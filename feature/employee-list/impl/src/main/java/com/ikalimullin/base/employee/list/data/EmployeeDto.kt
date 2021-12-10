@@ -1,5 +1,6 @@
 package com.ikalimullin.base.employee.list.data
 
+import android.annotation.SuppressLint
 import com.ikalimullin.entity.employee.Department
 import com.ikalimullin.entity.employee.Employee
 import java.time.LocalDateTime
@@ -16,6 +17,7 @@ internal data class EmployeeDto(
     val phone: String
 )
 
+@SuppressLint("NewApi")
 internal fun EmployeeDto.toDomain() = Employee(
     id = id,
     avatarUrl = avatarUrl,

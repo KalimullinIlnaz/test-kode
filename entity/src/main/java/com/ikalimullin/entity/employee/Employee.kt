@@ -1,5 +1,7 @@
 package com.ikalimullin.entity.employee
 
+import java.time.LocalDateTime
+
 data class Employee(
     val id: String,
     val avatarUrl: String,
@@ -8,6 +10,6 @@ data class Employee(
     val userTag: String,
     val department: Department,
     val position: String,
-    val birthdate: String,
+    val birthdate: LocalDateTime,
     val phone: String
 )
