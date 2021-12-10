@@ -20,6 +20,7 @@ android {
     }
     buildTypes {
         release {
+            applicationIdSuffix = ".production"
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -29,6 +30,7 @@ android {
         }
 
         debug {
+            applicationIdSuffix = ".dev"
             isMinifyEnabled = false
             isShrinkResources = false
         }
