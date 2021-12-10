@@ -1,6 +1,6 @@
 package com.ikalimullin.base.employee.list.domain.model
 
-import сom.ikalimullin.entity.employee.Employee
+import com.ikalimullin.entity.employee.Employee
 
 internal sealed class EmployeeListEffect {
     object LoadEmployees : EmployeeListEffect()
