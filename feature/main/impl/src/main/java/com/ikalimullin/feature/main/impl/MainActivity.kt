@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
+import com.ikalimullin.employee.api.EmployeeListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,7 +19,7 @@ internal class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        modo.init(savedInstanceState, Screens.Start())
+        modo.init(savedInstanceState, EmployeeListScreen())
     }
 
     override fun onResume() {

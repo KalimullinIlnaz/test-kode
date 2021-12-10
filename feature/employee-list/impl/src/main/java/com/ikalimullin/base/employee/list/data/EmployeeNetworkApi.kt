@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 internal interface EmployeeNetworkApi {
 
-    @GET
+    @GET("/users")
     suspend fun getEmployeeAsync(): Deferred<Result<List<EmployeeDto>>>
 }

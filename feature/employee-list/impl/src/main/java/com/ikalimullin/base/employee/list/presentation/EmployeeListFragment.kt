@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-internal class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
+class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
 
     private val viewModel by viewModels<EmployeeListViewModel>()
 

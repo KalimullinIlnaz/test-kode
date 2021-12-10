@@ -1,5 +1,6 @@
 package com.ikalimullin.base.employee.list.di
 
+import com.ikalimullin.base.employee.list.domain.model.EmployeeListInteractor
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListMiddleware
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
@@ -30,7 +31,7 @@ internal object EmployeeListDIModule {
     fun provideEmployeeListModel(
         dispatchersProvider: DispatchersProvider,
         middlewares: Set<EmployeeListMiddleware>
-    ) = EmployeeListModel(dispatchersProvider, middlewares)
+    ) : EmployeeListInteractor = EmployeeListModel(dispatchersProvider, middlewares)
 
     @Module
     @InstallIn(EmployeeListComponent::class)

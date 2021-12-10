@@ -9,6 +9,7 @@ plugins {
 applyAndroid()
 
 dependencies {
+    implementation(project(":feature:employee-list:api"))
     implementation(project(":core:uikit"))
 
     implementation(Dependencies.appCompat)
