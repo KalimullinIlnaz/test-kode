@@ -14,4 +14,8 @@ object Versions {
     const val room = "2.4.0-rc01"
     const val gradleCacheFix = "2.4.5"
     const val modo = "0.6.1"
+    const val fragment = "1.4.0"
+    const val lifecycle = "2.4.0"
+    const val adapterDelegate = "4.3.1"
+    const val recyclerView = "1.2.1"
 }

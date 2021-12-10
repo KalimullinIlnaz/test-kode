@@ -1,6 +1,5 @@
 package com.ikalimullin.core.coroutines
 
-import android.util.Log
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.SupervisorJob
@@ -13,7 +12,7 @@ private class ApplicationCoroutineScopeImpl(
     override val coroutineContext =
         SupervisorJob() +
             dispatchersProvider.unconfined +
-            CoroutineExceptionHandler { _, throwable -> Timber.log(Log.ERROR, throwable) } +
+            CoroutineExceptionHandler { _, throwable -> Timber.e(throwable) } +
             CoroutineName(AppCoroutineScope::class.java.simpleName)
 }
 

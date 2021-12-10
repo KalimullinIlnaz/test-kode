@@ -1,11 +1,11 @@
 package com.ikalimullin.di.core
 
 import android.content.Context
-import com.ikalimullin.BuildConfig
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.MultiReducer
 import com.github.terrakok.modo.android.AppReducer
 import com.github.terrakok.modo.android.LogReducer
+import com.ikalimullin.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

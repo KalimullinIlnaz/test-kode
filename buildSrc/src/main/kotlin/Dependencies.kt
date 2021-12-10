@@ -21,4 +21,9 @@ object Dependencies {
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val modo = "com.github.terrakok:modo:${Versions.modo}"
     const val modoRenderAndroidFm = "com.github.terrakok:modo-render-android-fm:${Versions.modo}"
+    const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
+    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val adapterDelegate = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${Versions.adapterDelegate}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
 }

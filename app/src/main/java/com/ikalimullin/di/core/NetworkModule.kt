@@ -14,6 +14,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
 
+    private const val BASE_URL = "stoplight.io/mocks/kode-education/trainee-test/25143926/users"
+
     @Provides
     @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder().build()
@@ -27,6 +29,7 @@ internal object NetworkModule {
     @Singleton
     fun provideRetrofit(converterFactory: Converter.Factory): Retrofit =
         Retrofit.Builder()
+            .baseUrl(BASE_URL)
             .addConverterFactory(converterFactory)
             .build()
 }

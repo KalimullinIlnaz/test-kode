@@ -8,4 +8,6 @@ applyAndroid()
 dependencies {
     implementation(Dependencies.coroutines)
     implementation(Dependencies.timber)
+    implementation(Dependencies.fragment)
+    implementation(Dependencies.lifecycleRuntime)
 }

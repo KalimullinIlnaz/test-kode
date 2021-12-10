@@ -1,6 +1,5 @@
 package com.ikalimullin.core.mvi
 
-import android.util.Log
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
@@ -87,7 +86,7 @@ class MviStore<ACTION, EFFECT, STATE>(
         listOf(initEffects, effects.asSharedFlow(), internalEffects.asSharedFlow()).merge(),
         state.asStateFlow()
     ).catch { throwable ->
-        Timber.log(Log.ERROR, throwable)
+        Timber.e(throwable)
         errorHandler(this, throwable)
     }
 }

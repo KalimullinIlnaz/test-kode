@@ -2,7 +2,7 @@ package com.ikalimullin.core.mvi
 
 import androidx.lifecycle.ViewModel
 
-class MviViewModel<STATE, ACTION>(private val interactor: Interactor<STATE, ACTION>) : ViewModel() {
+open class MviViewModel<STATE, ACTION>(private val interactor: Interactor<STATE, ACTION>) : ViewModel() {
 
     init {
         interactor.init()
