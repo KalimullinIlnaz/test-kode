@@ -1,0 +1,8 @@
+include(":app")
+include(":core:uikit")
+include(":core:mvi")
+include(":feature:main:impl")
+include(":core:coroutines")
+include(":core:db:impl")
+include(":core:db:api")
+include(":entity")

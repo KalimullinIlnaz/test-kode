@@ -1,0 +1,17 @@
+object Versions {
+    const val kotlin = "1.6.0"
+    const val hilt = "2.38.1"
+    const val detekt = "1.19.0"
+    const val kotlinter = "3.7.0"
+    const val timber = "5.0.1"
+    const val appCompat = "1.4.0"
+    const val material = "1.6.0-alpha01"
+    const val coroutines = "1.3.9"
+    const val coroutinesCore = "1.6.0-RC"
+    const val viewModelKtx = "2.4.0"
+    const val retrofit = "2.9.0"
+    const val moshi = "1.13.0"
+    const val room = "2.4.0-rc01"
+    const val gradleCacheFix = "2.4.5"
+    const val modo = "0.6.1"
+}
