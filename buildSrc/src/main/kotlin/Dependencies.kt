@@ -3,6 +3,7 @@ object Dependencies {
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltAndroidCompiler =
         "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+    const val hiltAndroidXCompiler = "androidx.hilt:hilt-compiler:${Versions.hiltAndroidXCompiler}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val material = "com.google.android.material:material:${Versions.material}"
@@ -23,7 +24,10 @@ object Dependencies {
     const val modoRenderAndroidFm = "com.github.terrakok:modo-render-android-fm:${Versions.modo}"
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    const val adapterDelegate = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${Versions.adapterDelegate}"
+    const val lifecycleViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val adapterDelegate =
+        "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${Versions.adapterDelegate}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
 }
+

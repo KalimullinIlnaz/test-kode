@@ -6,6 +6,12 @@ plugins {
     id(Plugins.kotlinParcelize)
 }
 
+android {
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
+}
+
 applyAndroid()
 
 dependencies {
@@ -18,13 +24,10 @@ dependencies {
     implementation(Dependencies.fragment)
     implementation(Dependencies.lifecycleRuntime)
     implementation(Dependencies.lifecycleViewModel)
-    implementation(Dependencies.modo)
-    implementation(Dependencies.modoRenderAndroidFm)
+    implementation(DependenciesLists.modo)
     implementation(Dependencies.retrofit)
-    implementation(Dependencies.moshi)
-    kapt(Dependencies.moshiKapt)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltAndroidCompiler)
+    implementation(DependenciesLists.moshi)
+    implementation(DependenciesLists.hilt)
     implementation(Dependencies.adapterDelegate)
     implementation(Dependencies.recyclerView)
     implementation(Dependencies.material)

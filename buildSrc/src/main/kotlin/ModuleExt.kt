@@ -10,6 +10,7 @@ fun Project.applyAndroid() {
         compileSdk = AppConfig.compileSdkVersion
 
         lint {
+            isCheckReleaseBuilds = false
             isAbortOnError = true
             isIgnoreWarnings = true
             isQuiet = true

@@ -1,6 +1,7 @@
 object Versions {
     const val kotlin = "1.6.0"
     const val hilt = "2.38.1"
+    const val hiltAndroidXCompiler = "1.0.0"
     const val detekt = "1.19.0"
     const val kotlinter = "3.7.0"
     const val timber = "5.0.1"

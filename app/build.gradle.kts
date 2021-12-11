@@ -36,7 +36,12 @@ android {
         }
     }
 
+    hilt {
+        enableExperimentalClasspathAggregation = true
+    }
+
     lint {
+        isCheckReleaseBuilds = false
         isAbortOnError = true
         isIgnoreWarnings = true
         isQuiet = true
@@ -74,28 +79,16 @@ dependencies {
     implementation(project(":core:db:impl"))
     implementation(project(":core:db:api"))
 
-    implementation(project(":feature:main:impl"))
+    api(project(":feature:main:impl"))
 
     implementation(Dependencies.appCompat)
-    
     implementation(Dependencies.timber)
-
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltAndroidCompiler)
-
+    implementation(DependenciesLists.hilt)
     implementation(Dependencies.coroutines)
     implementation(Dependencies.coroutinesCore)
-
     implementation(Dependencies.retrofit)
-
-    implementation(Dependencies.moshi)
-    kapt(Dependencies.moshiKapt)
+    implementation(DependenciesLists.moshi)
     implementation(Dependencies.moshiRetrofitConvertor)
-
-    implementation(Dependencies.room)
-    implementation(Dependencies.roomKtx)
-    kapt(Dependencies.roomKapt)
-
-    implementation(Dependencies.modo)
-    implementation(Dependencies.modoRenderAndroidFm)
+    implementation(DependenciesLists.room)
+    implementation(DependenciesLists.modo)
 }

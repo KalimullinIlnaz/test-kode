@@ -9,6 +9,5 @@ applyAndroid()
 dependencies {
     implementation(project(":feature:employee-list:impl"))
     implementation(Dependencies.fragment)
-    implementation(Dependencies.modo)
-    implementation(Dependencies.modoRenderAndroidFm)
+    implementation(DependenciesLists.modo)
 }

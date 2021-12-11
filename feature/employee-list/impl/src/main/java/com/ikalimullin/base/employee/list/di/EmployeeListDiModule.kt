@@ -8,37 +8,28 @@ import com.ikalimullin.core.coroutines.DispatchersProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.DefineComponent
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.FragmentComponent
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.multibindings.IntoSet
-import javax.inject.Scope
-
-@Scope
-@Retention(AnnotationRetention.SOURCE)
-internal annotation class EmployeeListScope
-
-@EmployeeListScope
-@DefineComponent(parent = FragmentComponent::class)
-internal interface EmployeeListComponent
 
 @Module
-@InstallIn(EmployeeListComponent::class)
+@InstallIn(ViewModelComponent::class)
 internal object EmployeeListDIModule {
 
-    @EmployeeListScope
+    @ViewModelScoped
     @Provides
     fun provideEmployeeListModel(
         dispatchersProvider: DispatchersProvider,
-        middlewares: Set<EmployeeListMiddleware>
-    ) : EmployeeListInteractor = EmployeeListModel(dispatchersProvider, middlewares)
+        middlewares: @JvmSuppressWildcards Set<EmployeeListMiddleware>
+    ): EmployeeListInteractor = EmployeeListModel(dispatchersProvider, middlewares)
 
     @Module
-    @InstallIn(EmployeeListComponent::class)
+    @InstallIn(ViewModelComponent::class)
     interface Middlewares {
 
         @Binds
-        @EmployeeListScope
+        @ViewModelScoped
         @IntoSet
         fun bindCodeLoadEmployeeMiddleware(
             middleware: LoadEmployeeMiddleware
