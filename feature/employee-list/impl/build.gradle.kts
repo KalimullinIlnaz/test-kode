@@ -12,7 +12,9 @@ android {
     }
 }
 
-applyAndroid()
+applyAndroid(
+    useViewBinding = true
+)
 
 dependencies {
     implementation(project(":entity"))

@@ -18,6 +18,15 @@ android {
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    sourceSets {
+
+    }
+
     buildTypes {
         release {
             applicationIdSuffix = ".production"

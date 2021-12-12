@@ -5,9 +5,16 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun Project.applyAndroid() {
+fun Project.applyAndroid(
+    useViewBinding: Boolean = false
+) {
     extensions.findByType<LibraryExtension>()?.apply {
         compileSdk = AppConfig.compileSdkVersion
+
+        buildFeatures {
+            viewBinding = useViewBinding
+            buildConfig = false
+        }
 
         lint {
             isCheckReleaseBuilds = false
@@ -42,6 +49,7 @@ fun Project.applyAndroid() {
     extensions.findByType<KotlinCompile>()?.apply {
         kotlinOptions {
             jvmTarget = AppConfig.javaVersion
+            freeCompilerArgs = freeCompilerArgs + "-Xopt-in=kotlin.RequiresOptIn"
         }
     }
 
