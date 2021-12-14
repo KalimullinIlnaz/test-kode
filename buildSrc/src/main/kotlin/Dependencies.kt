@@ -31,5 +31,6 @@ object Dependencies {
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
 }
 

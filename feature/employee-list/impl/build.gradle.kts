@@ -36,4 +36,5 @@ dependencies {
     implementation(Dependencies.recyclerView)
     implementation(Dependencies.material)
     implementation(Dependencies.shimmer)
+    implementation(Dependencies.swipeRefreshLayout)
 }

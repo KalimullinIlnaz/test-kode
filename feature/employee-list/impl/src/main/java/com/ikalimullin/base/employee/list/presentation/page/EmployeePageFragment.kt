@@ -35,7 +35,12 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewBinding.employeePageRecyclerView.adapter = screenAdapter
+        with(viewBinding) {
+            employeePageRecyclerView.adapter = screenAdapter
+            employeeSwipeRefreshLayout.setOnRefreshListener {
+                viewModel.action(EmployeeListAction.Refresh)
+            }
+        }
 
         viewModel.viewState
             .onEach(::handleState)

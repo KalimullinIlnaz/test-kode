@@ -21,4 +21,5 @@ object Versions {
     const val recyclerView = "1.2.1"
     const val coreKtx = "1.7.0"
     const val shimmer = "0.5.0"
+    const val swipeRefreshLayout = "1.1.0"
 }
