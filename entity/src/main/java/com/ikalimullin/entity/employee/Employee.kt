@@ -8,8 +8,8 @@ data class Employee(
     val firstName: String,
     val lastName: String,
     val userTag: String,
-    val department: Department,
+    val department: Department?,
     val position: String,
-    val birthdate: LocalDateTime,
+    val birthdate: LocalDateTime?,
     val phone: String
 )

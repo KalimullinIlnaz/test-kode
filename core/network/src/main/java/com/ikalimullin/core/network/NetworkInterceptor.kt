@@ -1,4 +1,4 @@
-package com.ikalimullin.data.network
+package com.ikalimullin.core.network
 
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -6,7 +6,7 @@ import okhttp3.Response
 private const val CONTENT_TYPE = "Content-Type"
 private const val CONTENT_TYPE_VALUE = "application/json"
 
-internal class NetworkInterceptor : Interceptor {
+class NetworkInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()

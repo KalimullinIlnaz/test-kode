@@ -34,5 +34,6 @@ object Dependencies {
     const val swipeRefreshLayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
+    const val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.httpLoggingInterceptor}"
 }
 

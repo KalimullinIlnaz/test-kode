@@ -23,6 +23,7 @@ dependencies {
     implementation(project(":core:coroutines"))
     implementation(project(":core:view"))
     implementation(project(":core:stdlib"))
+    implementation(project(":core:network"))
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)

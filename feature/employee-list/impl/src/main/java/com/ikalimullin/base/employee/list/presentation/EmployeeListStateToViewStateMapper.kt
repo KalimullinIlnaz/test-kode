@@ -21,7 +21,7 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor() : Employ
                     add(
                         EmployeeItem.Data(
                             name = "${employee.firstName} ${employee.lastName}",
-                            profession = employee.department.value,
+                            profession = employee.department?.value.orEmpty(),
                             avatarUrl = employee.avatarUrl
                         )
                     )

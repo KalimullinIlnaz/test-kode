@@ -1,12 +1,14 @@
 package com.ikalimullin.di.core
 
-import com.ikalimullin.data.network.NetworkInterceptor
+import com.ikalimullin.core.network.NetworkCallAdapterFactory
+import com.ikalimullin.core.network.NetworkInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -30,6 +32,7 @@ internal object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
         .addInterceptor(NetworkInterceptor())
         .build()
 
@@ -38,10 +41,10 @@ internal object NetworkModule {
     fun provideRetrofit(
         client: OkHttpClient,
         converterFactory: Converter.Factory
-    ): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(converterFactory)
-            .client(client)
-            .build()
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(client)
+        .addConverterFactory(converterFactory)
+        .addCallAdapterFactory(NetworkCallAdapterFactory())
+        .build()
 }

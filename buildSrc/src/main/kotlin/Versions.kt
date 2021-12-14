@@ -23,4 +23,5 @@ object Versions {
     const val shimmer = "0.5.0"
     const val swipeRefreshLayout = "1.1.0"
     const val splashScreen = "1.0.0-alpha02"
+    const val httpLoggingInterceptor = "4.9.3"
 }

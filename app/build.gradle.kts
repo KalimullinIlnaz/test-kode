@@ -87,6 +87,8 @@ dependencies {
     implementation(project(":core:coroutines"))
     implementation(project(":core:db:impl"))
     implementation(project(":core:db:api"))
+    implementation(project(":entity"))
+    implementation(project(":core:network"))
 
     api(project(":feature:main:impl"))
 
@@ -100,4 +102,5 @@ dependencies {
     implementation(Dependencies.moshiRetrofitConvertor)
     implementation(DependenciesLists.room)
     implementation(DependenciesLists.modo)
+    implementation(Dependencies.httpLoggingInterceptor)
 }
