@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":core:mvi"))
     implementation(project(":core:coroutines"))
     implementation(project(":core:view"))
+    implementation(project(":core:stdlib"))
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)

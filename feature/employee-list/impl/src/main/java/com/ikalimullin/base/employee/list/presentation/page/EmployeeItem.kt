@@ -9,4 +9,5 @@ sealed class EmployeeItem {
     ) : EmployeeItem()
 
     object Shimmer : EmployeeItem()
+    object Error : EmployeeItem()
 }

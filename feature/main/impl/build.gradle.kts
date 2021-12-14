@@ -11,12 +11,11 @@ applyAndroid()
 dependencies {
     implementation(project(":feature:employee-list:api"))
     implementation(project(":core:uikit"))
+    implementation(project(":core:stdlib"))
 
     implementation(Dependencies.appCompat)
-
     implementation(Dependencies.modo)
     implementation(Dependencies.modoRenderAndroidFm)
-
     implementation(Dependencies.hiltAndroid)
     kapt(Dependencies.hiltAndroidCompiler)
 }

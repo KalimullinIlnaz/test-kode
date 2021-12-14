@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
+import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.employee.api.EmployeeListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -15,7 +16,7 @@ internal class MainActivity : AppCompatActivity(R.layout.activity_main) {
     @Inject
     lateinit var modo: Modo
 
-    private val modoRender by lazy { ModoRender(this, R.id.container) }
+    private val modoRender by unsafeLazy { ModoRender(this, R.id.container) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

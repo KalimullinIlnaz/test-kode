@@ -6,6 +6,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.FragmentEmployeeListBinding
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
@@ -57,6 +58,9 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
             viewModel.action(EmployeeListAction.Search(text?.toString().orEmpty()))
         }
         employeeViewPager.adapter = viewPagerAdapter
+        TabLayoutMediator(employeeTabLayout, employeeViewPager) { tab, _ ->
+            viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
+        }.attach()
         employeeTabLayout.addTab(employeeTabLayout.newTab().apply { text = "Все" })
         Department.values().forEach { department ->
             employeeTabLayout.addTab(employeeTabLayout.newTab().apply { text = department.name })
