@@ -11,6 +11,11 @@ fun Project.applyAndroid(
     extensions.findByType<LibraryExtension>()?.apply {
         compileSdk = AppConfig.compileSdkVersion
 
+        defaultConfig {
+            targetSdk = AppConfig.targetSdkVersion
+            minSdk = AppConfig.minSdkVersion
+        }
+
         buildFeatures {
             viewBinding = useViewBinding
             buildConfig = false

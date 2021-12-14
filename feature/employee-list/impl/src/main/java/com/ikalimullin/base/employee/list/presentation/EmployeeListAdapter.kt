@@ -14,8 +14,8 @@ internal class EmployeeListAdapter : AsyncListDifferDelegationAdapter<EmployeeIt
 private object DiffUtil : DiffUtil.ItemCallback<EmployeeItem>() {
 
     override fun areItemsTheSame(oldItem: EmployeeItem, newItem: EmployeeItem) =
-        oldItem.employee.id == newItem.employee.id
+        oldItem::class.java == newItem::class.java
 
     override fun areContentsTheSame(oldItem: EmployeeItem, newItem: EmployeeItem) =
-        oldItem.employee == newItem.employee
+        oldItem == newItem
 }

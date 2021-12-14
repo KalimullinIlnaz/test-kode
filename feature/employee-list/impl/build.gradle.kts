@@ -21,6 +21,7 @@ dependencies {
     implementation(project(":core:uikit"))
     implementation(project(":core:mvi"))
     implementation(project(":core:coroutines"))
+    implementation(project(":core:view"))
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)

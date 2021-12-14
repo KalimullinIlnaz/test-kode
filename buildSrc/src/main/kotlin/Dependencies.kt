@@ -29,5 +29,6 @@ object Dependencies {
     const val adapterDelegate =
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${Versions.adapterDelegate}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
 }
 

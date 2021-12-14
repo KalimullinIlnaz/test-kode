@@ -6,5 +6,8 @@ plugins {
 applyAndroid()
 
 dependencies {
+    implementation(project(":core:view"))
+
     implementation(Dependencies.material)
+    implementation(Dependencies.coreKtx)
 }

@@ -7,7 +7,8 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
     companion object {
         fun initState() = EmployeeListState(
             employees = null,
-            error = null
+            error = null,
+            searchText = ""
         )
     }
 
@@ -15,13 +16,13 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
         effect: EmployeeListEffect,
         state: EmployeeListState
     ) = when (effect) {
-        is EmployeeListEffect.EmployeesLoadFailure -> state.copy(
-            error = effect.error
-        )
+        EmployeeListEffect.OpenSortDialog,
+        EmployeeListEffect.LoadEmployees -> state
+        is EmployeeListEffect.EmployeesLoadFailure -> state.copy(error = effect.error)
         is EmployeeListEffect.EmployeesLoadSuccess -> state.copy(
             employees = effect.employees,
             error = null
         )
-        EmployeeListEffect.LoadEmployees -> state
+        is EmployeeListEffect.SetSearchText -> state.copy(searchText = effect.text)
     }
 }

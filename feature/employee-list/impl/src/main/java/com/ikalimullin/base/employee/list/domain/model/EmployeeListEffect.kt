@@ -4,6 +4,11 @@ import com.ikalimullin.entity.employee.Employee
 
 internal sealed class EmployeeListEffect {
     object LoadEmployees : EmployeeListEffect()
+    object OpenSortDialog : EmployeeListEffect()
+
+    data class SetSearchText(
+        val text: String
+    ) : EmployeeListEffect()
 
     data class EmployeesLoadSuccess(
         val employees: List<Employee>

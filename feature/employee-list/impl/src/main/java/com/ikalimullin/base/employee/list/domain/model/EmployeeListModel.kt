@@ -35,4 +35,6 @@ internal class EmployeeListModel @Inject constructor(
 
 private fun actionToEffect(action: EmployeeListAction): EmployeeListEffect = when (action) {
     EmployeeListAction.Refresh -> EmployeeListEffect.LoadEmployees
+    is EmployeeListAction.Search -> EmployeeListEffect.SetSearchText(action.text)
+    EmployeeListAction.Sort -> EmployeeListEffect.OpenSortDialog
 }
