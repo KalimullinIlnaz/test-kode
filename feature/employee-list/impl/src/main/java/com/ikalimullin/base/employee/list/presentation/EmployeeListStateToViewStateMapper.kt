@@ -25,8 +25,8 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor() : Employ
                             avatarUrl = employee.avatarUrl
                         )
                     )
-                }
-            } ?: repeat(COUNT_EMPLOYEE_SHIMMER) { add(EmployeeItem.Shimmer) }
+                } ?: repeat(COUNT_EMPLOYEE_SHIMMER) { add(EmployeeItem.Shimmer) }
+            }
         }
 
         return EmployeeListViewState(items)
