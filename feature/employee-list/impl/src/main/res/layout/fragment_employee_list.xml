@@ -6,24 +6,27 @@
     android:layout_marginHorizontal="16dp"
     android:orientation="vertical">
 
-    <com.ikalimullin.core.uikit.search.SearchView
-        android:id="@+id/searchView"
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:contentInsetStart="0dp">
+
+        <com.ikalimullin.core.uikit.search.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/employeeTabLayout"
-        app:tabMode="scrollable"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        app:tabRippleColor="@color/light_gray" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/employeeViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="match_parent" />
 </androidx.appcompat.widget.LinearLayoutCompat>
