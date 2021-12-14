@@ -14,8 +14,7 @@ dependencies {
     implementation(project(":core:stdlib"))
 
     implementation(Dependencies.appCompat)
-    implementation(Dependencies.modo)
-    implementation(Dependencies.modoRenderAndroidFm)
-    implementation(Dependencies.hiltAndroid)
-    kapt(Dependencies.hiltAndroidCompiler)
+    implementation(DependenciesLists.modo)
+    implementation(DependenciesLists.hilt)
+    implementation(Dependencies.splashScreen)
 }

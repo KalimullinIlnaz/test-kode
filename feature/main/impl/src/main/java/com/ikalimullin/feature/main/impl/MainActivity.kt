@@ -2,6 +2,7 @@ package com.ikalimullin.feature.main.impl
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
@@ -19,6 +20,8 @@ internal class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val modoRender by unsafeLazy { ModoRender(this, R.id.container) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         modo.init(savedInstanceState, EmployeeListScreen())
     }

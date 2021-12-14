@@ -11,4 +11,5 @@ dependencies {
 
     implementation(Dependencies.material)
     implementation(Dependencies.coreKtx)
+    implementation(Dependencies.splashScreen)
 }
