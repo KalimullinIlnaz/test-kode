@@ -20,4 +20,5 @@ object Versions {
     const val adapterDelegate = "4.3.1"
     const val recyclerView = "1.2.1"
     const val coreKtx = "1.7.0"
+    const val shimmer = "0.5.0"
 }

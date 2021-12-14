@@ -7,6 +7,7 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
     companion object {
         fun initState() = EmployeeListState(
             employees = null,
+            filteredEmployees = null,
             error = null,
             searchText = ""
         )
@@ -24,5 +25,13 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
             error = null
         )
         is EmployeeListEffect.SetSearchText -> state.copy(searchText = effect.text)
+        is EmployeeListEffect.SetFilter -> when (val filter = effect.filter) {
+            EmployeeListEffect.SetFilter.Filter.All -> state.copy(filteredEmployees = null)
+            is EmployeeListEffect.SetFilter.Filter.Profession -> state.copy(
+                filteredEmployees = state.employees?.filter { employee ->
+                    employee.department == filter.department
+                }
+            )
+        }
     }
 }

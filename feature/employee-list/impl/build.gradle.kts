@@ -34,4 +34,5 @@ dependencies {
     implementation(Dependencies.adapterDelegate)
     implementation(Dependencies.recyclerView)
     implementation(Dependencies.material)
+    implementation(Dependencies.shimmer)
 }

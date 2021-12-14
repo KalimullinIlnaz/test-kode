@@ -4,6 +4,8 @@ import com.ikalimullin.base.employee.list.domain.model.EmployeeListInteractor
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListMiddleware
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
+import com.ikalimullin.base.employee.list.presentation.EmployeeListStateToViewStateMapper
+import com.ikalimullin.base.employee.list.presentation.EmployeeViewStateMapper
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import dagger.Binds
 import dagger.Module
@@ -31,8 +33,19 @@ internal object EmployeeListDIModule {
         @Binds
         @ViewModelScoped
         @IntoSet
-        fun bindCodeLoadEmployeeMiddleware(
+        fun bindLoadEmployeeMiddleware(
             middleware: LoadEmployeeMiddleware
         ): EmployeeListMiddleware
+    }
+
+    @Module
+    @InstallIn(ViewModelComponent::class)
+    interface ViewModel {
+
+        @Binds
+        @ViewModelScoped
+        fun bindEmployeeViewStateMapper(
+            viewStateMapper: EmployeeListStateToViewStateMapper
+        ): EmployeeViewStateMapper
     }
 }

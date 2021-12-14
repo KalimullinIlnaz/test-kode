@@ -3,6 +3,7 @@ package com.ikalimullin.base.employee.list.domain.model
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import com.ikalimullin.core.mvi.Middleware
 import com.ikalimullin.core.mvi.makeStore
+import com.ikalimullin.entity.employee.Department
 import javax.inject.Inject
 
 internal typealias EmployeeListMiddleware = Middleware<
@@ -37,4 +38,11 @@ private fun actionToEffect(action: EmployeeListAction): EmployeeListEffect = whe
     EmployeeListAction.Refresh -> EmployeeListEffect.LoadEmployees
     is EmployeeListAction.Search -> EmployeeListEffect.SetSearchText(action.text)
     EmployeeListAction.Sort -> EmployeeListEffect.OpenSortDialog
+    is EmployeeListAction.TabSelected -> EmployeeListEffect.SetFilter(
+        filter = try {
+            EmployeeListEffect.SetFilter.Filter.Profession(Department.valueOf(action.tabText))
+        } catch (e: IllegalArgumentException) {
+            EmployeeListEffect.SetFilter.Filter.All
+        }
+    )
 }

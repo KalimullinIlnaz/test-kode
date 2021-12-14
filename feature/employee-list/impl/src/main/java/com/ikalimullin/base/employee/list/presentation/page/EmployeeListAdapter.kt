@@ -1,4 +1,4 @@
-package com.ikalimullin.base.employee.list.presentation
+package com.ikalimullin.base.employee.list.presentation.page
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
@@ -8,6 +8,7 @@ internal class EmployeeListAdapter : AsyncListDifferDelegationAdapter<EmployeeIt
     init {
         delegatesManager
             .addDelegate(employeeDelegate())
+            .addDelegate(employeeShimmerDelegate())
     }
 }
 

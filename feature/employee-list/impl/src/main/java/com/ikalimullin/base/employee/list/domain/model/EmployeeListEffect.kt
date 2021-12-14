@@ -1,5 +1,6 @@
 package com.ikalimullin.base.employee.list.domain.model
 
+import com.ikalimullin.entity.employee.Department
 import com.ikalimullin.entity.employee.Employee
 
 internal sealed class EmployeeListEffect {
@@ -17,4 +18,13 @@ internal sealed class EmployeeListEffect {
     data class EmployeesLoadFailure(
         val error: Throwable
     ) : EmployeeListEffect()
+
+    data class SetFilter(
+        val filter: Filter
+    ) : EmployeeListEffect() {
+        sealed class Filter {
+            object All : Filter()
+            data class Profession(val department: Department) : Filter()
+        }
+    }
 }

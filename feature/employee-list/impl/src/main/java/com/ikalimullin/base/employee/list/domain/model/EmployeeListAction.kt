@@ -5,4 +5,5 @@ internal sealed class EmployeeListAction {
     object Sort : EmployeeListAction()
 
     class Search(val text: String) : EmployeeListAction()
+    class TabSelected(val tabText: String) : EmployeeListAction()
 }

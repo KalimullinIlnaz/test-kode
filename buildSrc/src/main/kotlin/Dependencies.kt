@@ -30,5 +30,6 @@ object Dependencies {
         "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:${Versions.adapterDelegate}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    const val shimmer = "com.facebook.shimmer:shimmer:${Versions.shimmer}"
 }
 

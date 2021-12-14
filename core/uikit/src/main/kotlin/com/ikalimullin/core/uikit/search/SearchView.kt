@@ -51,8 +51,6 @@ class SearchView @JvmOverloads constructor(
         inflate(context, R.layout.view_search, this)
         orientation = HORIZONTAL
 
-        //background = ContextCompat.getDrawable(context, R.drawable.rounded_light_gray_rectangle)
-
         cancel.setOnClickListener {
             cancel.isVisible = false
             sortIcon.isVisible = true
