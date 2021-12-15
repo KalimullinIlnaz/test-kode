@@ -19,6 +19,10 @@ object DependenciesLists {
         Dependency(Dependencies.moshi),
         Dependency(Dependencies.moshiKapt, DependencyType.KAPT)
     )
+    val glide = listOf(
+        Dependency(Dependencies.glide),
+        Dependency(Dependencies.glideCompiler, DependencyType.KAPT)
+    )
 }
 
 fun DependencyHandlerScope.implementation(dependencies: List<Dependency>) {
