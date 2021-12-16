@@ -18,7 +18,7 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
 
     private val viewBinding by viewBinding(FragmentEmployeeDetailsBinding::bind)
 
-    private val viewModel by viewModels<EmployeeDetailsViewModel>({ requireParentFragment() })
+    private val viewModel by viewModels<EmployeeDetailsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
