@@ -21,6 +21,7 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
         effect: EmployeeListEffect,
         state: EmployeeListState
     ) = when (effect) {
+        EmployeeListEffect.NavigateToDetails,
         EmployeeListEffect.LoadEmployees -> state
         is EmployeeListEffect.EmployeesLoadFailure -> state.copy(error = effect.error)
         is EmployeeListEffect.EmployeesLoadSuccess -> state.copy(

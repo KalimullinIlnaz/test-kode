@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":entity"))
     implementation(project(":core:uikit"))
     implementation(project(":core:mvi"))
+    implementation(project(":core:view"))
     implementation(project(":core:coroutines"))
     implementation(project(":core:stdlib"))
 

@@ -3,12 +3,15 @@ package com.ikalimullin.base.employee.list.presentation.page
 import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
-internal class EmployeeListAdapter(refresh: () -> Unit) :
+internal class EmployeeListAdapter(
+    navigateToDetails: () -> Unit,
+    refresh: () -> Unit
+) :
     AsyncListDifferDelegationAdapter<EmployeeItem>(DiffUtil) {
 
     init {
         delegatesManager
-            .addDelegate(employeeDelegate())
+            .addDelegate(employeeDelegate(navigateToDetails))
             .addDelegate(employeeShimmerDelegate())
             .addDelegate(employeeErrorDelegate(refresh))
             .addDelegate(employeeBirthdayDividerDelegate())

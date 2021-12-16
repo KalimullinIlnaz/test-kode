@@ -5,6 +5,7 @@ import com.ikalimullin.base.employee.list.domain.model.EmployeeListMiddleware
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
 import com.ikalimullin.base.employee.list.domain.model.middlewares.EmployeeSortingBackNavigateMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
+import com.ikalimullin.base.employee.list.domain.model.middlewares.NavigateToEmployeeDetailsMiddleware
 import com.ikalimullin.base.employee.list.presentation.EmployeeListStateToViewStateMapper
 import com.ikalimullin.base.employee.list.presentation.EmployeeViewStateMapper
 import com.ikalimullin.core.coroutines.DispatchersProvider
@@ -30,6 +31,13 @@ internal object EmployeeListDIModule {
     @Module
     @InstallIn(ViewModelComponent::class)
     interface Middlewares {
+
+        @Binds
+        @ViewModelScoped
+        @IntoSet
+        fun bindNavigateToEmployeeDetailsMiddleware(
+            middleware: NavigateToEmployeeDetailsMiddleware
+        ): EmployeeListMiddleware
 
         @Binds
         @ViewModelScoped

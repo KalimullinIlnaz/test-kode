@@ -17,6 +17,7 @@ applyAndroid(
 )
 
 dependencies {
+    implementation(project(":feature:employee-details:api"))
     implementation(project(":entity"))
     implementation(project(":core:uikit"))
     implementation(project(":core:mvi"))
