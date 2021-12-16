@@ -43,5 +43,4 @@ internal class MainActivity : AppCompatActivity(R.layout.activity_main) {
     } else {
         modo.back()
     }
-
 }
