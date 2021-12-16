@@ -12,6 +12,7 @@ import com.ikalimullin.base.employee.list.databinding.FragmentEmployeeListBindin
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
 import com.ikalimullin.base.employee.list.presentation.EmployeeListViewModel
 import com.ikalimullin.base.employee.list.presentation.EmployeeListViewState
+import com.ikalimullin.base.employee.list.presentation.sorting.EmployeeSortBottomDialogFragment
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.entity.employee.Department
@@ -49,15 +50,22 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
     }
 
     private fun handleState(state: EmployeeListViewState) = with(state) {
-        viewPagerAdapter?.employees = items
+        viewPagerAdapter?.submitItems(items)
     }
 
     private fun initView() = with(viewBinding) {
-        searchView.sortIcon.setOnClickListener { viewModel.action(EmployeeListAction.Sort) }
+        searchView.sortIcon.setOnClickListener {
+            /*viewModel.action(EmployeeListAction.Sorting.OpenScreen)*/ // Сделать абстракцию над модо или свой роутер для открытия диалогов
+            EmployeeSortBottomDialogFragment.newInstance().show(childFragmentManager, "1")
+        }
         searchView.searchView.doOnTextChanged { text, _, _, _ ->
             viewModel.action(EmployeeListAction.Search(text?.toString().orEmpty()))
         }
         employeeViewPager.adapter = viewPagerAdapter
+        initTabs()
+    }
+
+    private fun FragmentEmployeeListBinding.initTabs() {
         TabLayoutMediator(employeeTabLayout, employeeViewPager) { tab, _ ->
             viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
         }.attach()

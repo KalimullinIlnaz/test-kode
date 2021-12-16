@@ -7,7 +7,11 @@ import com.ikalimullin.base.employee.list.presentation.page.EmployeePageFragment
 
 internal class EmployeeListViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    var employees = listOf<EmployeeItem>()
+    private var employees = listOf<EmployeeItem>()
+
+    fun submitItems(items: List<EmployeeItem>) {
+        employees = items
+    }
 
     override fun getItemCount() = employees.size
 

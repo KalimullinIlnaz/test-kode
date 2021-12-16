@@ -11,6 +11,7 @@ internal class EmployeeListAdapter(refresh: () -> Unit) :
             .addDelegate(employeeDelegate())
             .addDelegate(employeeShimmerDelegate())
             .addDelegate(employeeErrorDelegate(refresh))
+            .addDelegate(employeeBirthdayDividerDelegate())
     }
 }
 

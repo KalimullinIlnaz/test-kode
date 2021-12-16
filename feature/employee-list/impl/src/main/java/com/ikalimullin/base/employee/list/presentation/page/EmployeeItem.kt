@@ -5,7 +5,12 @@ sealed class EmployeeItem {
     data class Data(
         val name: String,
         val profession: String,
-        val avatarUrl: String
+        val avatarUrl: String,
+        val birthday: String = "" // todo сетать в маппере
+    ) : EmployeeItem()
+
+    data class BirthdayDivider(
+        val year: String
     ) : EmployeeItem()
 
     object Shimmer : EmployeeItem()

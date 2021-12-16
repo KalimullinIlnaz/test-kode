@@ -24,7 +24,7 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
 
     private val viewBinding by viewBinding(FragmentEmployeePageBinding::bind)
 
-    private val viewModel by viewModels<EmployeeListViewModel>()
+    private val viewModel by viewModels<EmployeeListViewModel>({ requireParentFragment() })
 
     private val screenAdapter by unsafeLazy {
         EmployeeListAdapter(

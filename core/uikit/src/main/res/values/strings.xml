@@ -5,4 +5,9 @@
     <string name="some_kind_of_superintelligence_broke_it_all">Какой-то сверхразум все сломал</string>
     <string name="we_will_try_to_fix_it_quickly">Постараемся быстро починить</string>
     <string name="try_again">Попробовать снова</string>
+
+    <string name="sorting">Сортировка</string>
+    <string name="alphabetically">По алфавиту</string>
+    <string name="by_birthday">По дню рождения</string>
+    <string name="by_default">По умолчанию</string>
 </resources>

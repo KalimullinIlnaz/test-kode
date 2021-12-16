@@ -1,7 +1,6 @@
-package com.ikalimullin.employee.api
+package com.ikalimullin.base.employee.list.presentation.list
 
 import com.github.terrakok.modo.android.AppScreen
-import com.ikalimullin.base.employee.list.presentation.list.EmployeeListFragment
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

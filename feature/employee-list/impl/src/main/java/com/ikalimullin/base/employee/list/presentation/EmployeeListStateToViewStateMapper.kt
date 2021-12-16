@@ -1,6 +1,7 @@
 package com.ikalimullin.base.employee.list.presentation
 
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListState
+import com.ikalimullin.base.employee.list.domain.model.SortingType
 import com.ikalimullin.base.employee.list.presentation.page.EmployeeItem
 import com.ikalimullin.core.mvi.Mapper
 import javax.inject.Inject
@@ -16,7 +17,7 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor() : Employ
             if (state.error != null) {
                 add(EmployeeItem.Error)
             } else {
-                val employees = state.filteredEmployees ?: state.employees
+                val employees = state.sortingEmployees ?: state.filteredEmployees ?: state.employees
                 employees?.forEach { employee ->
                     add(
                         EmployeeItem.Data(
@@ -29,6 +30,13 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor() : Employ
             }
         }
 
-        return EmployeeListViewState(items)
+        val sortingType = state.sortingType
+
+        return EmployeeListViewState(
+            items = items,
+            isAlphabeticallySortingChecked = sortingType == SortingType.ALPHABETICALLY,
+            isBirthdaySortingChecked = sortingType == SortingType.BIRTHDAY,
+            isDefaultSortingChecked = sortingType == SortingType.DEFAULT
+        )
     }
 }

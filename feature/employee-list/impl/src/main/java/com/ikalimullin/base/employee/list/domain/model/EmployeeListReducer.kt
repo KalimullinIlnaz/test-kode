@@ -8,16 +8,19 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
         fun initState() = EmployeeListState(
             employees = null,
             filteredEmployees = null,
+            sortingEmployees = null,
+            sortingType = SortingType.DEFAULT,
             error = null,
             searchText = ""
         )
     }
 
+    private val sortingReducer = EmployeeSortingReducer()
+
     override fun invoke(
         effect: EmployeeListEffect,
         state: EmployeeListState
     ) = when (effect) {
-        EmployeeListEffect.OpenSortDialog,
         EmployeeListEffect.LoadEmployees -> state
         is EmployeeListEffect.EmployeesLoadFailure -> state.copy(error = effect.error)
         is EmployeeListEffect.EmployeesLoadSuccess -> state.copy(
@@ -33,5 +36,6 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
                 }
             )
         }
+        is EmployeeListEffect.Sorting -> sortingReducer(effect, state)
     }
 }

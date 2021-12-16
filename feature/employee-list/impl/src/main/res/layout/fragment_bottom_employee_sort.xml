@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="56dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:tint="@color/color_C3C3C6"
+        app:srcCompat="@drawable/rounded_light_gray_rectangle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:text="@string/sorting"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/alphabetically"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginVertical="40dp"
+        android:text="@string/alphabetically" />
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/byBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:text="@string/by_birthday" />
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:id="@+id/byDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="26dp"
+        android:layout_marginVertical="40dp"
+        android:text="@string/by_default" />
+</androidx.appcompat.widget.LinearLayoutCompat>

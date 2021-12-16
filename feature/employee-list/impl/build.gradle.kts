@@ -39,4 +39,5 @@ dependencies {
     implementation(Dependencies.shimmer)
     implementation(Dependencies.swipeRefreshLayout)
     implementation(Dependencies.glide)
+    implementation(Dependencies.material)
 }

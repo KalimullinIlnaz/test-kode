@@ -5,7 +5,11 @@ import com.ikalimullin.entity.employee.Employee
 
 internal sealed class EmployeeListEffect {
     object LoadEmployees : EmployeeListEffect()
-    object OpenSortDialog : EmployeeListEffect()
+
+    sealed class Sorting : EmployeeListEffect() {
+        object OpenScreen : Sorting()
+        data class Set(val sortingType: SortingType) : Sorting()
+    }
 
     data class SetSearchText(
         val text: String

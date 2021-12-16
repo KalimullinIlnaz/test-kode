@@ -23,6 +23,7 @@ internal fun employeeDelegate() =
                         .diskCacheStrategy(DiskCacheStrategy.ALL),
                     url = item.avatarUrl
                 )
+                birthday.text
             }
         }
     }

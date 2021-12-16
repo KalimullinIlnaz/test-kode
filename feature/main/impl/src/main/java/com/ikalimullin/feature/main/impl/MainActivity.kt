@@ -7,7 +7,7 @@ import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.android.ModoRender
 import com.github.terrakok.modo.android.init
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
-import com.ikalimullin.employee.api.EmployeeListScreen
+import com.ikalimullin.employee.api.Screens
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +23,7 @@ internal class MainActivity : AppCompatActivity(R.layout.activity_main) {
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
-        modo.init(savedInstanceState, EmployeeListScreen())
+        modo.init(savedInstanceState, Screens.employeeListScreen())
     }
 
     override fun onResume() {
