@@ -53,7 +53,13 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor(
             items = items,
             isAlphabeticallySortingChecked = sortingType == SortingType.ALPHABETICALLY,
             isBirthdaySortingChecked = sortingType == SortingType.BIRTHDAY,
-            isDefaultSortingChecked = sortingType == SortingType.DEFAULT
+            isDefaultSortingChecked = sortingType == SortingType.DEFAULT,
+            sortIconColor = if (sortingType != SortingType.DEFAULT) {
+                R.color.purple
+            } else {
+                R.color.color_C3C3C6
+            },
+            isRefreshing = state.isLoading && state.employees != null
         )
     }
 }

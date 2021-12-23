@@ -20,7 +20,7 @@ object NameWithUserTagFactory {
         @DimenRes userTagTextSize: Int,
         userTagTypeface: Typeface = Typeface.DEFAULT
     ) = buildSpannedString {
-        append("$name $userTag")
+        append("$name ${userTag.lowercase()}")
 
         val startUserTagPosition = name.length + 1
         val endUserTagPosition = startUserTagPosition + userTag.length

@@ -1,5 +1,6 @@
 package com.ikalimullin.base.employee.list.presentation.list
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
@@ -51,6 +52,8 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
 
     private fun handleState(state: EmployeeListViewState) = with(state) {
         viewPagerAdapter?.submitItems(items)
+        viewBinding.searchView.sortIcon.imageTintList =
+            ColorStateList.valueOf(requireContext().getColor(sortIconColor))
     }
 
     private fun initView() = with(viewBinding) {

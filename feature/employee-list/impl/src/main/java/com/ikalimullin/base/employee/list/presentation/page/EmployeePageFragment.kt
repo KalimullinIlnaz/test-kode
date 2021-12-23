@@ -43,6 +43,7 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
             employeeSwipeRefreshLayout.setOnRefreshListener {
                 viewModel.action(EmployeeListAction.Refresh)
             }
+            employeeSwipeRefreshLayout.setColorSchemeResources(R.color.purple)
         }
 
         viewModel.viewState
@@ -52,5 +53,6 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
 
     private fun handleState(state: EmployeeListViewState) = with(state) {
         screenAdapter.items = items
+        viewBinding.employeeSwipeRefreshLayout.isRefreshing = isRefreshing
     }
 }
