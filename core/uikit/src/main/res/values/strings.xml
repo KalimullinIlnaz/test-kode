@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="phone_mask">+7 (%1$s) %2$s %3$s %4$s</string>
     <string name="query_hint_text">Введи имя, тег, почту...</string>
     <string name="cancel">Отмена</string>
     <string name="some_kind_of_superintelligence_broke_it_all">Какой-то сверхразум все сломал</string>

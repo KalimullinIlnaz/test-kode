@@ -1,15 +1,21 @@
 package com.ikalimullin.base.employee.list.presentation
 
+import android.content.Context
+import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListState
 import com.ikalimullin.base.employee.list.domain.model.SortingType
 import com.ikalimullin.base.employee.list.presentation.page.EmployeeItem
 import com.ikalimullin.core.mvi.Mapper
+import com.ikalimullin.core.uikit.name.NameWithUserTagFactory
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 private const val COUNT_EMPLOYEE_SHIMMER = 10
 internal typealias EmployeeViewStateMapper = Mapper<EmployeeListState, EmployeeListViewState>
 
-internal class EmployeeListStateToViewStateMapper @Inject constructor() : EmployeeViewStateMapper {
+internal class EmployeeListStateToViewStateMapper @Inject constructor(
+    @ApplicationContext private val context: Context
+) : EmployeeViewStateMapper {
 
     override fun invoke(state: EmployeeListState): EmployeeListViewState {
 
@@ -19,10 +25,16 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor() : Employ
             } else {
                 val employees = state.sortingEmployees ?: state.filteredEmployees ?: state.employees
                 employees?.forEach { employee ->
+                    val name = NameWithUserTagFactory.create(
+                        name = "${employee.firstName} ${employee.lastName}",
+                        userTag = employee.userTag,
+                        userTagColor = context.getColor(R.color.color_97979B),
+                        userTagTextSize = context.resources.getDimensionPixelSize(R.dimen.text_size_14sp)
+                    )
                     add(
                         EmployeeItem.Data(
                             id = employee.id,
-                            name = "${employee.firstName} ${employee.lastName}",
+                            name = name,
                             profession = employee.department?.value.orEmpty(),
                             avatarUrl = employee.avatarUrl
                         )

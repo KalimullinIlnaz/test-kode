@@ -1,5 +1,6 @@
 package com.ikalimullin.feature.employee.details.impl.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
@@ -10,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.ikalimullin.core.constants.date.AgeUtils
 import com.ikalimullin.core.constants.date.DateTimeUtils
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
+import com.ikalimullin.core.uikit.name.NameWithUserTagFactory
 import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
 import com.ikalimullin.core.view.glide.ImageUtils.loadImage
@@ -28,8 +30,9 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         data class Employee(
             val avatarUrl: String,
             val name: String,
+            val userTag: String,
             val position: String,
-            val telephone: String,
+            val phone: String,
             val birthday: Long?
         ) : Parcelable
 
@@ -48,6 +51,13 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
 
         toolbar.setNavigationOnClickListener { viewModel.back() }
 
+        initHeader()
+        initPhoneItem()
+        initAgeItem()
+    }
+
+    @SuppressLint("ResourceType")
+    private fun FragmentEmployeeDetailsBinding.initHeader() {
         avatar.loadImage(
             url = args.avatarUrl,
             requestOptions = RequestOptions()
@@ -55,18 +65,35 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
                 .error(R.drawable.ic_launcher)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
         )
-        name.text = args.name
+        val nameWithTag = NameWithUserTagFactory.create(
+            name = args.name,
+            userTag = args.userTag,
+            userTagColor = requireContext().getColor(R.color.color_97979B),
+            userTagTextSize = resources.getDimensionPixelSize(R.dimen.text_size_17sp)
+        )
+        name.text = nameWithTag
         position.text = args.position
-        initAgeBlock()
     }
 
-    private fun FragmentEmployeeDetailsBinding.initAgeBlock() {
+    private fun FragmentEmployeeDetailsBinding.initPhoneItem() {
+        val phoneArgs = args.phone.replace("-", "")
+        phone.text = String.format(
+            getString(R.string.phone_mask),
+            phoneArgs.substring(0, 3),
+            phoneArgs.substring(3, 6),
+            phoneArgs.substring(6, 8),
+            phoneArgs.substring(8, 10)
+        )
+    }
+
+    private fun FragmentEmployeeDetailsBinding.initAgeItem() {
         val birthdayArgs = args.birthday
 
         val (birthdayText, ageText) = if (birthdayArgs != null) {
             val birthDayLocalDate = DateTimeUtils.convertLongToLocalDate(birthdayArgs)
             val birthDayText = DateTimeUtils.convertLocalDateToString(birthDayLocalDate)
-            val ageText = resources.getQuantityText(R.plurals.year, AgeUtils.getAge(birthDayLocalDate))
+            val age = AgeUtils.getAge(birthDayLocalDate)
+            val ageText = resources.getQuantityString(R.plurals.year, age, age)
 
             birthDayText to ageText
         } else {
