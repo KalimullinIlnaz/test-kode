@@ -8,7 +8,6 @@ internal class EmployeeListReducer : Reducer<EmployeeListEffect, EmployeeListSta
         fun initState() = EmployeeListState(
             employees = null,
             filteredEmployees = null,
-            sortingEmployees = null,
             sortingType = SortingType.DEFAULT,
             error = null,
             searchText = ""

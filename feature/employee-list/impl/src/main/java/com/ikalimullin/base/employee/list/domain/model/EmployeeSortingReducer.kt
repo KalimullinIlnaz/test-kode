@@ -11,7 +11,7 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
         EmployeeListEffect.Sorting.OpenScreen -> state
         is EmployeeListEffect.Sorting.Set -> {
             val sortingType = effect.sortingType
-            val sortingEmployees = when (sortingType) {
+            val filteredEmployees = when (sortingType) {
                 SortingType.ALPHABETICALLY -> {
                     val employees = state.filteredEmployees ?: state.filteredEmployees
                     employees?.sortedWith(
@@ -22,7 +22,7 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
                 SortingType.DEFAULT -> state.filteredEmployees ?: state.employees
             }
             state.copy(
-                sortingEmployees = sortingEmployees,
+                filteredEmployees = filteredEmployees,
                 sortingType = sortingType
             )
         }

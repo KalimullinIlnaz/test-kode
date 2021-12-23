@@ -16,4 +16,5 @@ sealed class EmployeeItem {
 
     object Shimmer : EmployeeItem()
     object Error : EmployeeItem()
+    object NotFound : EmployeeItem()
 }

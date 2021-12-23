@@ -14,6 +14,7 @@ internal class EmployeeListAdapter(
             .addDelegate(employeeShimmerDelegate())
             .addDelegate(employeeErrorDelegate(refresh))
             .addDelegate(employeeBirthdayDividerDelegate())
+            .addDelegate(employeeNotFoundDelegate())
     }
 }
 

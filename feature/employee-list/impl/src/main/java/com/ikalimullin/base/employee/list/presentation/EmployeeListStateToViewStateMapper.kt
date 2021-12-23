@@ -20,26 +20,30 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor(
     override fun invoke(state: EmployeeListState): EmployeeListViewState {
 
         val items = mutableListOf<EmployeeItem>().apply {
-            if (state.error != null) {
-                add(EmployeeItem.Error)
-            } else {
-                val employees = state.sortingEmployees ?: state.filteredEmployees ?: state.employees
-                employees?.forEach { employee ->
-                    val name = NameWithUserTagFactory.create(
-                        name = "${employee.firstName} ${employee.lastName}",
-                        userTag = employee.userTag,
-                        userTagColor = context.getColor(R.color.color_97979B),
-                        userTagTextSize = context.resources.getDimensionPixelSize(R.dimen.text_size_14sp)
-                    )
-                    add(
-                        EmployeeItem.Data(
-                            id = employee.id,
-                            name = name,
-                            profession = employee.department?.value.orEmpty(),
-                            avatarUrl = employee.avatarUrl
+            when {
+                state.error != null -> add(EmployeeItem.Error)
+                state.searchText.isNotEmpty() && state.filteredEmployees.isNullOrEmpty() -> {
+                    add(EmployeeItem.NotFound)
+                }
+                else -> {
+                    val employees = state.filteredEmployees ?: state.employees
+                    employees?.forEach { employee ->
+                        val name = NameWithUserTagFactory.create(
+                            name = "${employee.firstName} ${employee.lastName}",
+                            userTag = employee.userTag,
+                            userTagColor = context.getColor(R.color.color_97979B),
+                            userTagTextSize = context.resources.getDimensionPixelSize(R.dimen.text_size_14sp)
                         )
-                    )
-                } ?: repeat(COUNT_EMPLOYEE_SHIMMER) { add(EmployeeItem.Shimmer) }
+                        add(
+                            EmployeeItem.Data(
+                                id = employee.id,
+                                name = name,
+                                profession = employee.department?.value.orEmpty(),
+                                avatarUrl = employee.avatarUrl
+                            )
+                        )
+                    } ?: repeat(COUNT_EMPLOYEE_SHIMMER) { add(EmployeeItem.Shimmer) }
+                }
             }
         }
 

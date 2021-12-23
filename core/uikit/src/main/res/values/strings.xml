@@ -12,4 +12,6 @@
     <string name="by_birthday">По дню рождения</string>
     <string name="by_default">По умолчанию</string>
     <string name="birthday_is_missing">День рождение отсутсвует</string>
+    <string name="we_didnt_find_anyone">Мы никого не нашли</string>
+    <string name="try_adjusting_the_query">Попробуй скорректировать запрос</string>
 </resources>
