@@ -5,7 +5,7 @@ import com.ikalimullin.entity.employee.Employee
 
 internal sealed class EmployeeListEffect {
     object LoadEmployees : EmployeeListEffect()
-    object NavigateToDetails : EmployeeListEffect()
+    data class NavigateToDetails(val id: String) : EmployeeListEffect()
 
     sealed class Sorting : EmployeeListEffect() {
         object OpenScreen : Sorting()

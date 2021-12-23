@@ -7,7 +7,9 @@ plugins {
 applyAndroid()
 
 dependencies {
+    implementation(project(":entity"))
     implementation(project(":feature:employee-details:impl"))
+
     implementation(Dependencies.fragment)
     implementation(DependenciesLists.modo)
 }

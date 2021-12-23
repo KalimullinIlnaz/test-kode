@@ -4,35 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="20dp"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginTop="8dp"
         android:background="@color/color_F7F7F8"
         android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="8dp"
         android:paddingBottom="24dp">
 
-        <FrameLayout
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_chevron" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:navigationIcon="@drawable/ic_chevron" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/avatar"
-                android:layout_width="104dp"
-                android:layout_height="104dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                tools:srcCompat="@tools:sample/avatars" />
-        </FrameLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/avatar"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/name"
@@ -58,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
         android:paddingVertical="26dp">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -80,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
         android:paddingVertical="26dp">
 
         <androidx.appcompat.widget.AppCompatTextView

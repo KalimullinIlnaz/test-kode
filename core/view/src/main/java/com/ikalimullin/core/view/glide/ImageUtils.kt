@@ -8,8 +8,8 @@ object ImageUtils {
 
     // TODO добавить обработку ошибок
     fun ImageView.loadImage(
-        requestOptions: RequestOptions,
-        url: String
+        url: String,
+        requestOptions: RequestOptions = RequestOptions(),
     ) {
         Glide
             .with(this)

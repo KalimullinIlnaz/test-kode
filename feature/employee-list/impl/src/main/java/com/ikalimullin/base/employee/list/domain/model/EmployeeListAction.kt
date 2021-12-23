@@ -10,5 +10,5 @@ internal sealed class EmployeeListAction {
 
     class Search(val text: String) : EmployeeListAction()
     class TabSelected(val tabText: String) : EmployeeListAction()
-    object NavigateToDetails : EmployeeListAction()
+    class NavigateToDetails(val id: String) : EmployeeListAction()
 }

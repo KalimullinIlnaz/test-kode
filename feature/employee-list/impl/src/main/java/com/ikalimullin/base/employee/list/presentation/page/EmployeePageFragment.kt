@@ -29,7 +29,9 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
     private val screenAdapter by unsafeLazy {
         EmployeeListAdapter(
             refresh = { viewModel.action(EmployeeListAction.Refresh) },
-            navigateToDetails = { viewModel.action(EmployeeListAction.NavigateToDetails) }
+            navigateToDetails = { id ->
+                viewModel.action(EmployeeListAction.NavigateToDetails(id))
+            }
         )
     }
 

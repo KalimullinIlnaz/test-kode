@@ -31,4 +31,5 @@ dependencies {
     implementation(DependenciesLists.modo)
     implementation(DependenciesLists.hilt)
     implementation(Dependencies.material)
+    implementation(Dependencies.glide)
 }

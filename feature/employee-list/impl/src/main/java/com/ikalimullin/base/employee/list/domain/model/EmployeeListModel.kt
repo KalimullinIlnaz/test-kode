@@ -46,5 +46,5 @@ private fun actionToEffect(action: EmployeeListAction): EmployeeListEffect = whe
     )
     EmployeeListAction.Sorting.OpenScreen -> EmployeeListEffect.Sorting.OpenScreen
     is EmployeeListAction.Sorting.Set -> EmployeeListEffect.Sorting.Set(action.sortingType)
-    EmployeeListAction.NavigateToDetails -> EmployeeListEffect.NavigateToDetails
+    is EmployeeListAction.NavigateToDetails -> EmployeeListEffect.NavigateToDetails(action.id)
 }

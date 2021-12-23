@@ -17,7 +17,7 @@ internal class EmployeeListViewModel @Inject constructor(
     dispatchersProvider: DispatchersProvider
 ) : MviViewModel<EmployeeListState, EmployeeListAction>(interactor) {
 
-    val viewState = interactor.stateFlow
+    val viewState = stateFlow
         .mapWithDistinct(viewStateMapper)
         .flowOn(dispatchersProvider.default)
 }

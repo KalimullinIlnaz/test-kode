@@ -88,6 +88,7 @@ class MviStore<ACTION, EFFECT, STATE>(
     ).catch { throwable ->
         Timber.e(throwable)
         errorHandler(this, throwable)
+        // TODO добавить крэш при билд конфиге - дебаг
     }
 }
 

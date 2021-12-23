@@ -4,10 +4,9 @@ import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
 
 internal class EmployeeListAdapter(
-    navigateToDetails: () -> Unit,
+    navigateToDetails: (id: String) -> Unit,
     refresh: () -> Unit
-) :
-    AsyncListDifferDelegationAdapter<EmployeeItem>(DiffUtil) {
+) : AsyncListDifferDelegationAdapter<EmployeeItem>(DiffUtilCallback) {
 
     init {
         delegatesManager
@@ -18,7 +17,7 @@ internal class EmployeeListAdapter(
     }
 }
 
-private object DiffUtil : DiffUtil.ItemCallback<EmployeeItem>() {
+private object DiffUtilCallback : DiffUtil.ItemCallback<EmployeeItem>() {
 
     override fun areItemsTheSame(oldItem: EmployeeItem, newItem: EmployeeItem) =
         oldItem::class.java == newItem::class.java

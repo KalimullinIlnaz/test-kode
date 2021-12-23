@@ -8,14 +8,14 @@ import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.ItemEmployeeBinding
 import com.ikalimullin.core.view.glide.ImageUtils.loadImage
 
-internal fun employeeDelegate(navigateToDetails: () -> Unit) =
+internal fun employeeDelegate(navigateToDetails: (id: String) -> Unit) =
     adapterDelegateViewBinding<EmployeeItem.Data, EmployeeItem, ItemEmployeeBinding>(
         { layoutInflater, root -> ItemEmployeeBinding.inflate(layoutInflater, root, false) }
     ) {
 
         binding.root.setOnClickListener {
             if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
-                navigateToDetails()
+                navigateToDetails(item.id)
             }
         }
 
@@ -24,11 +24,11 @@ internal fun employeeDelegate(navigateToDetails: () -> Unit) =
                 name.text = item.name
                 profession.text = item.profession
                 avatar.loadImage(
+                    url = item.avatarUrl,
                     requestOptions = RequestOptions()
                         .circleCrop()
                         .error(R.drawable.ic_launcher)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL),
-                    url = item.avatarUrl
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
                 )
                 birthday.text
             }

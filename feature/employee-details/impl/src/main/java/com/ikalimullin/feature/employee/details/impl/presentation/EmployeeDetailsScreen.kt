@@ -6,15 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class EmployeeDetailsScreen(
-    private val employee: Employee
+    private val employee: EmployeeDetailsFragment.Companion.Employee
 ) : AppScreen("EmployeeDetails") {
-    override fun create() = EmployeeDetailsFragment.newInstance(employee.toParcelableArgs())
+    override fun create() = EmployeeDetailsFragment.newInstance(employee)
 }
-
-private fun Employee.toParcelableArgs() = EmployeeDetailsFragment.Companion.Employee(
-    avatarUrl = avatarUrl,
-    name = "$firstName $lastName",
-    profession = department?.value.orEmpty(),
-    telephone = phone,
-    birthdate = birthdate.toString()
-)
