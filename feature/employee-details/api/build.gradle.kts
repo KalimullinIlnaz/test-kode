@@ -9,6 +9,7 @@ applyAndroid()
 dependencies {
     implementation(project(":entity"))
     implementation(project(":feature:employee-details:impl"))
+    implementation(project(":core:const"))
 
     implementation(Dependencies.fragment)
     implementation(DependenciesLists.modo)

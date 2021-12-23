@@ -1,5 +1,7 @@
 package com.ikalimullin.feature.employee.details.impl.presentation
 
+import com.github.terrakok.modo.Modo
+import com.github.terrakok.modo.back
 import com.ikalimullin.core.mvi.MviViewModel
 import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsAction
 import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsInteractor
@@ -9,5 +11,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class EmployeeDetailsViewModel @Inject constructor(
-    interactor: EmployeeDetailsInteractor
-) : MviViewModel<EmployeeDetailsState, EmployeeDetailsAction>(interactor)
+    interactor: EmployeeDetailsInteractor,
+    private val modo: Modo
+) : MviViewModel<EmployeeDetailsState, EmployeeDetailsAction>(interactor) {
+
+    fun back() = modo.back()
+}

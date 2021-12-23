@@ -7,9 +7,9 @@ applyAndroid()
 
 dependencies {
     implementation(project(":entity"))
+    implementation(project(":core:const"))
 
     implementation(Dependencies.coroutines)
     implementation(Dependencies.retrofit)
     implementation(Dependencies.moshi)
-    implementation(Dependencies.timber)
 }
