@@ -1,4 +1,4 @@
-package com.ikalimullin.feature.employee.details.impl.presentation
+package com.ikalimullin.feature.employee.details.impl.presentation.details
 
 import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back

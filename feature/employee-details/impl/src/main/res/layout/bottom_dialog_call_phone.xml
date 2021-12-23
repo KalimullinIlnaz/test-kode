@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:background="@color/color_F5F5F5"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="18dp"
+        tools:text="+7 (999) 900 90 90" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="18dp"
+        android:text="@string/cancel"
+        android:textSize="20sp" />
+</LinearLayout>

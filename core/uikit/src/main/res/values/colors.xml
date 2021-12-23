@@ -12,6 +12,7 @@
     <color name="color_97979B">#97979B</color>
     <color name="color_C3C3C6">#C3C3C6</color>
     <color name="purple">#6534FF</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
     <color name="light_gray_shimmer_start">#F3F3F6</color>
     <color name="light_gray_shimmer_end">#FAFAFA</color>
 </resources>

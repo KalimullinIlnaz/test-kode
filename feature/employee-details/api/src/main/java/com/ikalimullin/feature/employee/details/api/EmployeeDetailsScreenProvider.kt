@@ -3,8 +3,8 @@ package com.ikalimullin.feature.employee.details.api
 import com.github.terrakok.modo.Screen
 import com.ikalimullin.core.constants.date.DateTimeUtils
 import com.ikalimullin.entity.employee.Employee
-import com.ikalimullin.feature.employee.details.impl.presentation.EmployeeDetailsFragment
-import com.ikalimullin.feature.employee.details.impl.presentation.EmployeeDetailsScreen
+import com.ikalimullin.feature.employee.details.impl.presentation.details.EmployeeDetailsFragment
+import com.ikalimullin.feature.employee.details.impl.presentation.details.EmployeeDetailsScreen
 
 object EmployeeDetailsScreenProvider {
     fun employeeDetailsScreen(

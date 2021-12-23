@@ -1,4 +1,4 @@
-package com.ikalimullin.feature.employee.details.impl.presentation
+package com.ikalimullin.feature.employee.details.impl.presentation.details
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -18,6 +18,7 @@ import com.ikalimullin.core.view.glide.ImageUtils.loadImage
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
 import com.ikalimullin.feature.employee.details.impl.databinding.FragmentEmployeeDetailsBinding
+import com.ikalimullin.feature.employee.details.impl.presentation.phone.PhoneBottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
 
@@ -77,13 +78,17 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
 
     private fun FragmentEmployeeDetailsBinding.initPhoneItem() {
         val phoneArgs = args.phone.replace("-", "")
-        phone.text = String.format(
+        val phoneNumber = String.format(
             getString(R.string.phone_mask),
             phoneArgs.substring(0, 3),
             phoneArgs.substring(3, 6),
             phoneArgs.substring(6, 8),
             phoneArgs.substring(8, 10)
         )
+        phone.text = phoneNumber
+        phone.setOnClickListener {
+            PhoneBottomSheetDialog.newInstance(PhoneBottomSheetDialog.Companion.Phone(phoneNumber)).show(childFragmentManager, "5")
+        }
     }
 
     private fun FragmentEmployeeDetailsBinding.initAgeItem() {
