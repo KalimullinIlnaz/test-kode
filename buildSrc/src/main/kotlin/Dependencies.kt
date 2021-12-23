@@ -37,5 +37,6 @@ object Dependencies {
     const val httpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.httpLoggingInterceptor}"
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val coreDesugar = "com.android.tools:desugar_jdk_libs:${Versions.coreDesugar}"
 }
 

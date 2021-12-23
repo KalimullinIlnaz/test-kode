@@ -1,5 +1,6 @@
 package com.ikalimullin.di.core
 
+import com.ikalimullin.core.network.LocalDateAdapter
 import com.ikalimullin.core.network.NetworkCallAdapterFactory
 import com.ikalimullin.core.network.NetworkInterceptor
 import com.squareup.moshi.Moshi
@@ -12,6 +13,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.time.LocalDate
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +24,9 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi = Moshi.Builder().build()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(LocalDate::class.java, LocalDateAdapter())
+        .build()
 
     @Provides
     @Singleton

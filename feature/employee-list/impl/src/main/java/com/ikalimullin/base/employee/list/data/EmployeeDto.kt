@@ -4,7 +4,7 @@ import com.ikalimullin.entity.employee.Department
 import com.ikalimullin.entity.employee.Employee
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.time.LocalDateTime
+import java.time.LocalDate
 
 @JsonClass(generateAdapter = true)
 internal data class EmployeeDto(
@@ -17,10 +17,10 @@ internal data class EmployeeDto(
         @Json(name = "avatarUrl") val avatarUrl: String,
         @Json(name = "firstName") val firstName: String,
         @Json(name = "lastName") val lastName: String,
-        @Json(name = "userTag") val userTag: String,
+        @Json(name = "userTag") val userTag: String, // TODO добавить в отображение
         @Json(name = "department") val department: String?,
         @Json(name = "position") val position: String,
-        @Json(name = "birthdate") val birthdate: String?,
+        @Json(name = "birthday") val birthday: LocalDate?,
         @Json(name = "phone") val phone: String
     )
 }
@@ -32,11 +32,9 @@ internal fun EmployeeDto.Employee.toDomain() = Employee(
     lastName = lastName,
     userTag = userTag,
     department = department?.let { department ->
-        Department.values().find {
-            department == it.name.lowercase()
-        }
+        Department.values().find { department == it.name.lowercase() }
     },
     position = position,
-    birthdate = birthdate?.let { LocalDateTime.parse(birthdate) },
+    birthday = birthday,
     phone = phone
 )

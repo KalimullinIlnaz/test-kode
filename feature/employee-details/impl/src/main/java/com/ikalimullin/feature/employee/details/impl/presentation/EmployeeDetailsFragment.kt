@@ -26,9 +26,9 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         data class Employee(
             val avatarUrl: String,
             val name: String,
-            val profession: String,
+            val position: String,
             val telephone: String,
-            val birthdate: String
+            val birthday: String
         ) : Parcelable
 
         fun newInstance(employee: Employee) =
@@ -52,7 +52,7 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
         )
         name.text = args.name
-        profession.text = args.profession
-        birthday.text = args.birthdate
+        position.text = args.position
+        birthday.text = args.birthday
     }
 }

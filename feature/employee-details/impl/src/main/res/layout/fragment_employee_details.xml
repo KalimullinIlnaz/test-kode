@@ -39,7 +39,7 @@
             tools:text="Алиса Иванова" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/profession"
+            android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

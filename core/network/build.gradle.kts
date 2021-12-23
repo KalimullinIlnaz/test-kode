@@ -10,4 +10,6 @@ dependencies {
 
     implementation(Dependencies.coroutines)
     implementation(Dependencies.retrofit)
+    implementation(Dependencies.moshi)
+    implementation(Dependencies.timber)
 }

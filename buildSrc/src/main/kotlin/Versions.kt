@@ -25,4 +25,5 @@ object Versions {
     const val splashScreen = "1.0.0-alpha02"
     const val httpLoggingInterceptor = "4.9.3"
     const val glide = "4.12.0"
+    const val coreDesugar = "1.1.5"
 }

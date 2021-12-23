@@ -23,10 +23,6 @@ android {
         viewBinding = true
     }
 
-    sourceSets {
-
-    }
-
     buildTypes {
         release {
             applicationIdSuffix = ".production"
@@ -80,6 +76,12 @@ android {
     kotlinOptions {
         jvmTarget = AppConfig.javaVersion
     }
+
+    compileOptions {
+   /*     isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11*/
+    }
 }
 
 dependencies {
@@ -103,4 +105,5 @@ dependencies {
     implementation(DependenciesLists.room)
     implementation(DependenciesLists.modo)
     implementation(Dependencies.httpLoggingInterceptor)
+    implementation(Dependencies.coreDesugar)
 }

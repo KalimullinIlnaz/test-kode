@@ -14,7 +14,7 @@ object EmployeeDetailsScreenProvider {
 private fun Employee.toParcelableArgs() = EmployeeDetailsFragment.Companion.Employee(
     avatarUrl = avatarUrl,
     name = "$firstName $lastName",
-    profession = department?.value.orEmpty(),
+    position = position,
     telephone = phone,
-    birthdate = birthdate.toString()
+    birthday = birthday.toString()
 )
