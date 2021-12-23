@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
-        app:tabRippleColor="@color/light_gray" />
+        app:tabRippleColor="@color/color_F7F7F8" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/employeeViewPager"
