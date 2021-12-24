@@ -1,6 +1,9 @@
 package com.ikalimullin.feature.employee.details.impl.presentation.phone
 
 import android.app.Dialog
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.Gravity
@@ -35,7 +38,7 @@ class PhoneBottomSheetDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
             window?.apply {
-                setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 requestFeature(Window.FEATURE_NO_TITLE)
                 setGravity(Gravity.BOTTOM)
             }
@@ -54,5 +57,17 @@ class PhoneBottomSheetDialog : DialogFragment() {
         cancel.setOnClickListener { dismiss() }
 
         phone.text = args.phone
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val widthScreen = Resources.getSystem().displayMetrics.widthPixels
+        val marginWidth = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+
+        val width = widthScreen - marginWidth
+        val height = ViewGroup.LayoutParams.WRAP_CONTENT
+
+        requireDialog().window?.setLayout(width, height)
     }
 }

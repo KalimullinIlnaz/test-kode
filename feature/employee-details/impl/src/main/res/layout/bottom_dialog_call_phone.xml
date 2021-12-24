@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
-    android:background="@android:color/transparent"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -12,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:alpha="0.7"
-        android:background="@color/color_F5F5F5"
+        android:background="@drawable/rounded_light_gray_rectangle"
+        android:backgroundTint="@color/color_F5F5F5"
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingVertical="18dp"
@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
-        android:background="@color/white"
+        android:background="@drawable/rounded_light_gray_rectangle"
+        android:backgroundTint="@color/white"
         android:gravity="center"
         android:paddingHorizontal="16dp"
         android:paddingVertical="18dp"
