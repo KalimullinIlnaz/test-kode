@@ -87,7 +87,10 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         )
         phone.text = phoneNumber
         phone.setOnClickListener {
-            PhoneBottomSheetDialog.newInstance(PhoneBottomSheetDialog.Companion.Phone(phoneNumber)).show(childFragmentManager, "5")
+            PhoneBottomSheetDialog.show(
+                childFragmentManager,
+                PhoneBottomSheetDialog.Companion.Phone(phoneNumber)
+            )
         }
     }
 

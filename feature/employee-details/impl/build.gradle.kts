@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":core:coroutines"))
     implementation(project(":core:stdlib"))
     implementation(project(":core:const"))
+    implementation(project(":core:navigation"))
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)

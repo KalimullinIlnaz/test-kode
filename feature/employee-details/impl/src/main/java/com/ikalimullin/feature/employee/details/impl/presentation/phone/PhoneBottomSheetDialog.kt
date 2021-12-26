@@ -12,14 +12,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
 import com.ikalimullin.feature.employee.details.impl.databinding.BottomDialogCallPhoneBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class PhoneBottomSheetDialog : DialogFragment() {
 
     companion object {
@@ -28,10 +32,20 @@ class PhoneBottomSheetDialog : DialogFragment() {
             val phone: String
         ) : Parcelable
 
-        fun newInstance(phone: Phone) = PhoneBottomSheetDialog().withInitialArguments(phone)
+        fun show(
+            fragmentManager: FragmentManager,
+            phone: Phone
+        ) = newInstance(phone).show(fragmentManager, PhoneBottomSheetDialog::class.java.simpleName)
+
+        private fun newInstance(phone: Phone) = PhoneBottomSheetDialog().withInitialArguments(phone)
     }
 
+    @Inject
+    lateinit var viewModelFactory: PhoneViewModel.Factory
+
     private val viewBinding by viewBinding(BottomDialogCallPhoneBinding::bind)
+
+    private val viewModel by unsafeLazy { viewModelFactory.create(args.phone) }
 
     private val args by unsafeLazy { initialArguments<Phone>() }
 
@@ -55,6 +69,7 @@ class PhoneBottomSheetDialog : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         cancel.setOnClickListener { dismiss() }
+        phone.setOnClickListener { viewModel.call() }
 
         phone.text = args.phone
     }
