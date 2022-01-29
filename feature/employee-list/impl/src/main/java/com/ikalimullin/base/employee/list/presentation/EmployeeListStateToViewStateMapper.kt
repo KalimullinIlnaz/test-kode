@@ -7,6 +7,7 @@ import com.ikalimullin.base.employee.list.domain.model.SortingType
 import com.ikalimullin.base.employee.list.presentation.page.EmployeeItem
 import com.ikalimullin.core.mvi.Mapper
 import com.ikalimullin.core.uikit.name.NameWithUserTagFactory
+import com.ikalimullin.core.view.resourses.dimens.TextSize
 import com.ikalimullin.entity.employee.Employee
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -60,7 +61,7 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor(
                 name = "${employee.firstName} ${employee.lastName}",
                 userTag = employee.userTag,
                 userTagColor = context.getColor(R.color.color_97979B),
-                userTagTextSize = context.resources.getDimensionPixelSize(R.dimen.text_size_14sp)
+                userTagTextSize = TextSize.TEXT_SIZE_14
             )
             add(
                 EmployeeItem.Data(

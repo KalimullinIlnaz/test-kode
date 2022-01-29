@@ -15,6 +15,8 @@ import com.ikalimullin.core.uikit.name.NameWithUserTagFactory
 import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
 import com.ikalimullin.core.view.glide.ImageUtils.loadImage
+import com.ikalimullin.core.view.resourses.dimens.TextSize
+import com.ikalimullin.core.view.textView.newText
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
 import com.ikalimullin.feature.employee.details.impl.databinding.FragmentEmployeeDetailsBinding
@@ -70,10 +72,10 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
             name = args.name,
             userTag = args.userTag,
             userTagColor = requireContext().getColor(R.color.color_97979B),
-            userTagTextSize = resources.getDimensionPixelSize(R.dimen.text_size_17sp)
+            userTagTextSize = TextSize.TEXT_SIZE_17
         )
-        name.text = nameWithTag
-        position.text = args.position
+        name.newText = nameWithTag
+        position.newText = args.position
     }
 
     private fun FragmentEmployeeDetailsBinding.initPhoneItem() {
@@ -85,7 +87,7 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
             phoneArgs.substring(6, 8),
             phoneArgs.substring(8, 10)
         )
-        phone.text = phoneNumber
+        phone.newText = phoneNumber
         phone.setOnClickListener {
             PhoneBottomSheetDialog.show(
                 childFragmentManager,
@@ -111,7 +113,7 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
             birthDayText to ageText
         }
 
-        birthday.text = birthdayText
-        age.text = ageText
+        birthday.newText = birthdayText
+        age.newText = ageText
     }
 }

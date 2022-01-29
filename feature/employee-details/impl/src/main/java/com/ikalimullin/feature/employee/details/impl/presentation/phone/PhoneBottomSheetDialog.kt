@@ -16,12 +16,14 @@ import androidx.fragment.app.FragmentManager
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
+import com.ikalimullin.core.view.resourses.dimens.Dimens
+import com.ikalimullin.core.view.textView.newText
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
 import com.ikalimullin.feature.employee.details.impl.databinding.BottomDialogCallPhoneBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
+import kotlinx.parcelize.Parcelize
 
 @AndroidEntryPoint
 class PhoneBottomSheetDialog : DialogFragment() {
@@ -71,14 +73,14 @@ class PhoneBottomSheetDialog : DialogFragment() {
         cancel.setOnClickListener { dismiss() }
         phone.setOnClickListener { viewModel.call() }
 
-        phone.text = args.phone
+        phone.newText = args.phone
     }
 
     override fun onStart() {
         super.onStart()
 
         val widthScreen = Resources.getSystem().displayMetrics.widthPixels
-        val marginWidth = resources.getDimensionPixelSize(R.dimen.margin_8dp)
+        val marginWidth = Dimens.padding8px.toInt()
 
         val width = widthScreen - marginWidth
         val height = ViewGroup.LayoutParams.WRAP_CONTENT

@@ -2,6 +2,7 @@ package com.ikalimullin.base.employee.list.presentation.page
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.ikalimullin.base.employee.list.databinding.ItemEmployeeBirthdayDividerBinding
+import com.ikalimullin.core.view.textView.newText
 
 internal fun employeeBirthdayDividerDelegate() =
     adapterDelegateViewBinding<EmployeeItem.BirthdayDivider, EmployeeItem, ItemEmployeeBirthdayDividerBinding>(
@@ -16,7 +17,7 @@ internal fun employeeBirthdayDividerDelegate() =
 
         bind {
             with(binding) {
-                birthdayYear.text = item.year
+                birthdayYear.newText = item.year
             }
         }
     }

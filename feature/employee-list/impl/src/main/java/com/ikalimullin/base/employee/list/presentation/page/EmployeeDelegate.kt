@@ -7,6 +7,7 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.ItemEmployeeBinding
 import com.ikalimullin.core.view.glide.ImageUtils.loadImage
+import com.ikalimullin.core.view.textView.newText
 
 internal fun employeeDelegate(navigateToDetails: (id: String) -> Unit) =
     adapterDelegateViewBinding<EmployeeItem.Data, EmployeeItem, ItemEmployeeBinding>(
@@ -21,8 +22,8 @@ internal fun employeeDelegate(navigateToDetails: (id: String) -> Unit) =
 
         bind {
             with(binding) {
-                name.text = item.name
-                profession.text = item.profession
+                name.newText = item.name
+                profession.newText = item.profession
                 avatar.loadImage(
                     url = item.avatarUrl,
                     requestOptions = RequestOptions()
