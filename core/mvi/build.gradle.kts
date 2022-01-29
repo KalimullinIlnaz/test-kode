@@ -3,7 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
 }
 
-applyAndroid()
+applyAndroid(generateBuildConfig = true)
 
 dependencies {
     implementation(project(":core:coroutines"))

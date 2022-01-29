@@ -1,6 +1,7 @@
 package com.ikalimullin.core.mvi
 
 import com.ikalimullin.core.coroutines.DispatchersProvider
+import com.ikalimullin.mvi.BuildConfig
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -13,17 +14,19 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class MviStore<ACTION, EFFECT, STATE>(
     initState: STATE,
-    dispatchersProvider: DispatchersProvider,
+    private val dispatchersProvider: DispatchersProvider,
     private val middlewares: Set<Middleware<EFFECT, STATE>>,
     private val reducer: Reducer<EFFECT, STATE>,
     private val initEffects: List<EFFECT>,
@@ -33,7 +36,7 @@ class MviStore<ACTION, EFFECT, STATE>(
 
     private val coroutineScope = CoroutineScope(
         SupervisorJob() +
-            dispatchersProvider.default +
+            dispatchersProvider.main +
             CoroutineName(MviStore::class.java.simpleName)
     )
 
@@ -46,37 +49,35 @@ class MviStore<ACTION, EFFECT, STATE>(
 
     fun action(action: ACTION) {
         coroutineScope.launch {
-            mutex.withLock {
-                effects.emit(actionToEffect(action))
-            }
+            effects.emit(actionToEffect(action))
         }
     }
 
     override fun init() {
         coroutineScope.launch {
-            mutex.withLock {
-                val initEffects = initEffects.asFlow()
-                val middleFlow = middlewares
-                    .map { middleware -> dispatch(middleware, initEffects) }
-                    .merge()
-                    .onEach { effect ->
-                        coroutineScope.launch {
-                            internalEffects.emit(effect)
-                        }
+            val initEffects = initEffects.asFlow()
+            val middleFlow = middlewares
+                .map { middleware -> dispatch(middleware, initEffects) }
+                .merge()
+                .onEach { effect ->
+                    coroutineScope.launch {
+                        internalEffects.emit(effect)
                     }
+                }
 
-                listOf(initEffects, effects, middleFlow)
-                    .merge()
-                    .onEach(::reduce)
-                    .launchIn(coroutineScope)
-            }
+            listOf(initEffects, effects, middleFlow)
+                .merge()
+                .onEach(::reduce)
+                .collect()
         }
     }
 
     override fun dispose() = coroutineScope.cancel()
 
-    private suspend fun reduce(effect: EFFECT) = mutex.withLock {
-        state.emit(reducer(effect, state.value))
+    private suspend fun reduce(effect: EFFECT) = withContext(dispatchersProvider.default) {
+        mutex.withLock {
+            state.emit(reducer(effect, state.value))
+        }
     }
 
     private fun dispatch(
@@ -85,11 +86,14 @@ class MviStore<ACTION, EFFECT, STATE>(
     ) = middleware(
         listOf(initEffects, effects.asSharedFlow(), internalEffects.asSharedFlow()).merge(),
         state.asStateFlow()
-    ).catch { throwable ->
-        Timber.e(throwable)
-        errorHandler(this, throwable)
-        // TODO добавить крэш при билд конфиге - дебаг
-    }
+    )
+        .flowOn(dispatchersProvider.default)
+        .catch { throwable ->
+            Timber.e(throwable)
+            errorHandler(this, throwable)
+
+            if (BuildConfig.DEBUG) throw throwable
+        }
 }
 
 fun <STATE, EFFECT, ACTION> makeStore(

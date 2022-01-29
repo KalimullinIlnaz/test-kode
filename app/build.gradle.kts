@@ -8,6 +8,7 @@ plugins {
 
 android {
     compileSdk = AppConfig.compileSdkVersion
+    buildToolsVersion = AppConfig.buildToolVersion
 
     defaultConfig {
         applicationId = AppConfig.applicationId
@@ -78,9 +79,8 @@ android {
     }
 
     compileOptions {
-   /*     isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11*/
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 

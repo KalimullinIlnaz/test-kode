@@ -1,4 +1,5 @@
 object AppConfig {
+    const val buildToolVersion = "30.0.2"
     const val targetSdkVersion = 31
     const val minSdkVersion = 24
     const val compileSdkVersion = 31
