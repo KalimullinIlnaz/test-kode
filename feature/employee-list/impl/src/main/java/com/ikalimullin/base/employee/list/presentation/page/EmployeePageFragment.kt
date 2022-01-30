@@ -37,18 +37,22 @@ internal class EmployeePageFragment : Fragment(R.layout.fragment_employee_page) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+        observeState()
+    }
 
-        with(viewBinding) {
-            employeePageRecyclerView.adapter = screenAdapter
-            employeeSwipeRefreshLayout.setOnRefreshListener {
-                viewModel.action(EmployeeListAction.Refresh)
-            }
-            employeeSwipeRefreshLayout.setColorSchemeResources(R.color.purple)
-        }
-
+    private fun observeState() {
         viewModel.viewState
             .onEach(::handleState)
             .subscribeWithStartedState(viewLifecycleOwner)
+    }
+
+    private fun initView() = with(viewBinding) {
+        employeePageRecyclerView.adapter = screenAdapter
+        employeeSwipeRefreshLayout.setOnRefreshListener {
+            viewModel.action(EmployeeListAction.Refresh)
+        }
+        employeeSwipeRefreshLayout.setColorSchemeResources(R.color.purple)
     }
 
     private fun handleState(state: EmployeeListViewState) = with(state) {

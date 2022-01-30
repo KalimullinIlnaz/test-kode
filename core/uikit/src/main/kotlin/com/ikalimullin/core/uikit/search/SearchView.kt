@@ -8,11 +8,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.core.view.keyboard.hideKeyboard
+import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.uikit.R
 
 class SearchView @JvmOverloads constructor(
@@ -65,7 +65,7 @@ class SearchView @JvmOverloads constructor(
         searchView.onFocusChangeListener = OnFocusChangeListener { _, isFocused ->
             if (isFocused) {
                 searchIcon.imageTintList = ColorStateList.valueOf(
-                    ContextCompat.getColor(context, R.color.black)
+                    context.getCompatColor(R.color.black)
                 )
             }
             cancel.isVisible = isFocused

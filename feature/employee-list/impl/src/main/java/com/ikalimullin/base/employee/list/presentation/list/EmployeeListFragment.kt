@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.FragmentEmployeeListBinding
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
 import com.ikalimullin.base.employee.list.presentation.EmployeeListViewModel
 import com.ikalimullin.base.employee.list.presentation.EmployeeListViewState
+import com.ikalimullin.base.employee.list.presentation.page.EmployeePageFragment
 import com.ikalimullin.base.employee.list.presentation.sorting.EmployeeSortBottomDialogFragment
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
+import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.entity.employee.Department
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,48 +33,45 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
 
     private val viewModel by viewModels<EmployeeListViewModel>()
 
-    private var viewPagerAdapter: EmployeeListViewPagerAdapter? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewPagerAdapter = EmployeeListViewPagerAdapter(this)
+        initEmployeePage()
         initView()
-
-        viewModel.viewState
-            .onEach(::handleState)
-            .subscribeWithStartedState(viewLifecycleOwner)
+        observeState()
     }
 
-    override fun onDestroyView() {
-        viewPagerAdapter = null
-        viewBinding.employeeViewPager.adapter = null
-        super.onDestroyView()
-    }
-
-    private fun handleState(state: EmployeeListViewState) = with(state) {
-        viewPagerAdapter?.submitItems(items)
-        viewBinding.searchView.sortIcon.imageTintList =
-            ColorStateList.valueOf(requireContext().getColor(sortIconColor))
+    private fun initEmployeePage() = with(viewBinding) {
+        val pageFragment = EmployeePageFragment.newInstance()
+        childFragmentManager.commit { replace(pageFragmentContainer.id, pageFragment) }
     }
 
     private fun initView() = with(viewBinding) {
+        initListeners()
+        initTabs()
+    }
+
+    private fun initListeners() = with(viewBinding) {
         searchView.sortIcon.setOnClickListener {
-            /*viewModel.action(EmployeeListAction.Sorting.OpenScreen)*/ // Сделать абстракцию над модо или свой роутер для открытия диалогов
+            // Сделать абстракцию над модо или свой роутер для открытия диалогов
+            /*viewModel.action(EmployeeListAction.Sorting.OpenScreen)*/
             EmployeeSortBottomDialogFragment.newInstance().show(childFragmentManager, "1")
         }
         searchView.searchView.doOnTextChanged { text, _, _, _ ->
             viewModel.action(EmployeeListAction.Search(text?.toString().orEmpty()))
         }
-        employeeViewPager.adapter = viewPagerAdapter
-        initTabs()
     }
 
-    private fun FragmentEmployeeListBinding.initTabs() {
-        TabLayoutMediator(employeeTabLayout, employeeViewPager) { tab, _ ->
-            viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
-        }.attach()
-        employeeTabLayout.addTab(employeeTabLayout.newTab().apply { text = "Все" })
+    private fun initTabs() = with(viewBinding) {
+        employeeTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) =
+                viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
+            override fun onTabReselected(tab: TabLayout.Tab?) = Unit
+        })
+        employeeTabLayout.addTab(
+            employeeTabLayout.newTab().apply { text = getString(R.string.all) }
+        )
         Department.values().forEach { department ->
             employeeTabLayout.addTab(employeeTabLayout.newTab().apply { text = department.name })
         }
@@ -83,5 +82,16 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
             override fun onTabReselected(tab: TabLayout.Tab?) = Unit
         })
+    }
+
+    private fun observeState() {
+        viewModel.viewState
+            .onEach(::handleState)
+            .subscribeWithStartedState(viewLifecycleOwner)
+    }
+
+    private fun handleState(state: EmployeeListViewState) = with(state) {
+        viewBinding.searchView.sortIcon.imageTintList =
+            ColorStateList.valueOf(requireContext().getCompatColor(sortIconColor))
     }
 }

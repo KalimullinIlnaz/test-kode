@@ -1,7 +1,7 @@
- plugins {
+plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-     id(Plugins.kotlinKapt)
+    id(Plugins.kotlinKapt)
 }
 
 applyAndroid(
@@ -9,6 +9,8 @@ applyAndroid(
 )
 
 dependencies {
+    implementation(project(":core:stdlib"))
+
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)
     implementation(DependenciesLists.glide)

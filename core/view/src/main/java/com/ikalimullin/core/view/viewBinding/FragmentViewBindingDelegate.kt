@@ -45,8 +45,8 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     }
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-        binding?.let {
-            return it
+        binding?.also { binding ->
+            return binding
         }
 
         val lifecycle = thisRef.viewLifecycleOwner.lifecycle

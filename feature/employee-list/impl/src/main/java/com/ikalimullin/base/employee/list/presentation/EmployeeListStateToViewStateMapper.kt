@@ -8,6 +8,7 @@ import com.ikalimullin.base.employee.list.presentation.page.EmployeeItem
 import com.ikalimullin.core.mvi.Mapper
 import com.ikalimullin.core.uikit.name.NameWithUserTagFactory
 import com.ikalimullin.core.view.resourses.dimens.TextSize
+import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.entity.employee.Employee
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -60,8 +61,8 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor(
             val name = NameWithUserTagFactory.create(
                 name = "${employee.firstName} ${employee.lastName}",
                 userTag = employee.userTag,
-                userTagColor = context.getColor(R.color.color_97979B),
-                userTagTextSize = TextSize.TEXT_SIZE_14
+                userTagColor = context.getCompatColor(R.color.color_97979B),
+                userTagTextSize = TextSize.textSize14px
             )
             add(
                 EmployeeItem.Data(

@@ -16,6 +16,7 @@ import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
 import com.ikalimullin.core.view.glide.ImageUtils.loadImage
 import com.ikalimullin.core.view.resourses.dimens.TextSize
+import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.core.view.textView.newText
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
@@ -49,18 +50,20 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
 
     private val args by unsafeLazy { initialArguments<Employee>() }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        toolbar.setNavigationOnClickListener { viewModel.back() }
-
+        initListener()
         initHeader()
         initPhoneItem()
         initAgeItem()
     }
 
+    private fun initListener() = with(viewBinding) {
+        toolbar.setNavigationOnClickListener { viewModel.back() }
+    }
+
     @SuppressLint("ResourceType")
-    private fun FragmentEmployeeDetailsBinding.initHeader() {
+    private fun initHeader() = with(viewBinding) {
         avatar.loadImage(
             url = args.avatarUrl,
             requestOptions = RequestOptions()
@@ -71,21 +74,21 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         val nameWithTag = NameWithUserTagFactory.create(
             name = args.name,
             userTag = args.userTag,
-            userTagColor = requireContext().getColor(R.color.color_97979B),
-            userTagTextSize = TextSize.TEXT_SIZE_17
+            userTagColor = requireContext().getCompatColor(R.color.color_97979B),
+            userTagTextSize = TextSize.textSize17px
         )
         name.newText = nameWithTag
         position.newText = args.position
     }
 
-    private fun FragmentEmployeeDetailsBinding.initPhoneItem() {
+    private fun initPhoneItem() = with(viewBinding) {
         val phoneArgs = args.phone.replace("-", "")
         val phoneNumber = String.format(
             getString(R.string.phone_mask),
-            phoneArgs.substring(0, 3),
-            phoneArgs.substring(3, 6),
-            phoneArgs.substring(6, 8),
-            phoneArgs.substring(8, 10)
+            phoneArgs.substring(startIndex = 0, endIndex = 3),
+            phoneArgs.substring(startIndex = 3, endIndex = 6),
+            phoneArgs.substring(startIndex = 6, endIndex = 8),
+            phoneArgs.substring(startIndex = 8, endIndex = 10)
         )
         phone.newText = phoneNumber
         phone.setOnClickListener {
@@ -96,7 +99,7 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         }
     }
 
-    private fun FragmentEmployeeDetailsBinding.initAgeItem() {
+    private fun initAgeItem() = with(viewBinding) {
         val birthdayArgs = args.birthday
 
         val (birthdayText, ageText) = if (birthdayArgs != null) {

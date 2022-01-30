@@ -25,8 +25,8 @@
         app:tabMode="scrollable"
         app:tabRippleColor="@color/color_F7F7F8" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/employeeViewPager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/pageFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </androidx.appcompat.widget.LinearLayoutCompat>

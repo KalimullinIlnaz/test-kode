@@ -51,13 +51,14 @@ class PhoneBottomSheetDialog : DialogFragment() {
 
     private val args by unsafeLazy { initialArguments<Phone>() }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return super.onCreateDialog(savedInstanceState).apply {
-            window?.apply {
-                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                requestFeature(Window.FEATURE_NO_TITLE)
-                setGravity(Gravity.BOTTOM)
-            }
+    override fun onCreateDialog(savedInstanceState: Bundle?) =
+        super.onCreateDialog(savedInstanceState).apply { initDialog() }
+
+    private fun Dialog.initDialog() {
+        window?.apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            requestFeature(Window.FEATURE_NO_TITLE)
+            setGravity(Gravity.BOTTOM)
         }
     }
 
@@ -67,20 +68,29 @@ class PhoneBottomSheetDialog : DialogFragment() {
         savedInstanceState: Bundle?,
     ): View = inflater.inflate(R.layout.bottom_dialog_call_phone, container, false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
 
+    private fun initView() = with(viewBinding) {
+        initListeners()
+        phone.newText = args.phone
+    }
+
+    private fun initListeners() = with(viewBinding) {
         cancel.setOnClickListener { dismiss() }
         phone.setOnClickListener { viewModel.call() }
-
-        phone.newText = args.phone
     }
 
     override fun onStart() {
         super.onStart()
+        resizeViewWidth()
+    }
 
+    private fun resizeViewWidth() {
         val widthScreen = Resources.getSystem().displayMetrics.widthPixels
-        val marginWidth = Dimens.padding8px.toInt()
+        val marginWidth = Dimens.padding8px
 
         val width = widthScreen - marginWidth
         val height = ViewGroup.LayoutParams.WRAP_CONTENT

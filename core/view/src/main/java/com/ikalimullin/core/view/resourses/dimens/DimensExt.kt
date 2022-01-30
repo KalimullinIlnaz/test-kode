@@ -1,6 +1,6 @@
 package com.ikalimullin.core.view.resourses.dimens
 
-import android.content.res.Resources
+import com.ikalimullin.core.view.resourses.systemResources
 
 val Int.px: Float
-    get() = (this * Resources.getSystem().displayMetrics.density)
+    get() = this * systemResources.displayMetrics.density
