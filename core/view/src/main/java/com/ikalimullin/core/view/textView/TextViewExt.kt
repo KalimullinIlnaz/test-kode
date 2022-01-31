@@ -22,10 +22,10 @@ private fun TextView.prefetchText(newText: CharSequence) {
     val metricsParamsTextView = TextViewCompat.getTextMetricsParams(this)
     val weakReferenceTextView = WeakReference(this)
     GlobalScope.launch(Dispatchers.Default) {
-        val pText = PrecomputedTextCompat.create(newText, metricsParamsTextView)
+        val precomputedText = PrecomputedTextCompat.create(newText, metricsParamsTextView)
         withContext(Dispatchers.Main) {
             weakReferenceTextView.get()?.also { textView ->
-                TextViewCompat.setPrecomputedText(textView, pText)
+                TextViewCompat.setPrecomputedText(textView, precomputedText)
             }
         }
     }

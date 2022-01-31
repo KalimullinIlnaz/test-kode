@@ -1,4 +1,4 @@
-package com.ikalimullin.base.employee.list.presentation.page
+package com.ikalimullin.base.employee.list.presentation.page.adapter
 
 sealed class EmployeeItem {
 
@@ -7,7 +7,7 @@ sealed class EmployeeItem {
         val name: CharSequence,
         val profession: String,
         val avatarUrl: String,
-        val birthday: String = "" // todo сетать в маппере
+        val birthday: String = ""
     ) : EmployeeItem()
 
     data class BirthdayDivider(

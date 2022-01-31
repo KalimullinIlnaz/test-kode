@@ -1,5 +1,6 @@
-package com.ikalimullin.base.employee.list.presentation.page
+package com.ikalimullin.base.employee.list.presentation.page.adapter
 
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -15,15 +16,13 @@ internal fun employeeDelegate(navigateToDetails: (id: String) -> Unit) =
     ) {
 
         binding.root.setOnClickListener {
-            if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
+            if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
                 navigateToDetails(item.id)
             }
         }
 
         bind {
             with(binding) {
-                name.newText = item.name
-                profession.newText = item.profession
                 avatar.loadImage(
                     url = item.avatarUrl,
                     requestOptions = RequestOptions()
@@ -31,7 +30,11 @@ internal fun employeeDelegate(navigateToDetails: (id: String) -> Unit) =
                         .error(R.drawable.ic_launcher)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                 )
-                birthday.text
+
+                name.newText = item.name
+                profession.newText = item.profession
+                birthday.newText = item.birthday
+                birthday.isVisible = item.birthday.isNotEmpty()
             }
         }
     }

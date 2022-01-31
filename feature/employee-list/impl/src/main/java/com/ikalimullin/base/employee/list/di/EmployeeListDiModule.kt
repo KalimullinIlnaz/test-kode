@@ -19,7 +19,7 @@ import dagger.multibindings.IntoSet
 
 @Module
 @InstallIn(ViewModelComponent::class)
-internal object EmployeeListDIModule {
+internal object EmployeeListDiModule {
 
     @ViewModelScoped
     @Provides

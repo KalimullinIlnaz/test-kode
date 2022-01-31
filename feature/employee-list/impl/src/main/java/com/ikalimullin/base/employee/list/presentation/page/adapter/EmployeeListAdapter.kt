@@ -1,7 +1,8 @@
-package com.ikalimullin.base.employee.list.presentation.page
+package com.ikalimullin.base.employee.list.presentation.page.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hannesdorfmann.adapterdelegates4.AsyncListDifferDelegationAdapter
+import com.ikalimullin.base.employee.list.presentation.page.employeeShimmerDelegate
 
 internal class EmployeeListAdapter(
     navigateToDetails: (id: String) -> Unit,

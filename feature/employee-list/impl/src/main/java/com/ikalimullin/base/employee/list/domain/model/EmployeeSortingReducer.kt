@@ -1,5 +1,6 @@
 package com.ikalimullin.base.employee.list.domain.model
 
+import com.ikalimullin.core.constants.date.DateTimeUtils
 import com.ikalimullin.core.mvi.Reducer
 import com.ikalimullin.entity.employee.Employee
 import java.time.LocalDate
@@ -30,28 +31,34 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
         compareBy(String.CASE_INSENSITIVE_ORDER) { employee -> employee.firstName }
     )
 
-    private fun sortByBirthday(employees: List<Employee>?) =
-        employees?.sortedWith { employee1, employee2 ->
-            val birthday1 = employee1.birthday
-            val birthday2 = employee2.birthday
+    private fun sortByBirthday(employees: List<Employee>?) = mutableListOf<Employee>().apply {
+        employees ?: return@apply
 
-            when {
-                birthday1 == null && birthday2 != null -> return@sortedWith 1
-                birthday1 != null && birthday2 == null -> return@sortedWith -1
-                birthday1 == null && birthday2 == null -> return@sortedWith 0
+        val now = LocalDate.now()
+
+        val beforeBirthdayEmployeeList = mutableListOf<Employee>()
+        val afterBirthdayEmployeeList = mutableListOf<Employee>()
+
+        employees.forEach { employee ->
+            // TODO не учитывается день рождение в високосный год
+            val birthday = employee.birthday.mapEmployeeBirthday(now)
+
+            if (birthday?.isBefore(now) == true) {
+                beforeBirthdayEmployeeList.add(employee)
+            } else {
+                afterBirthdayEmployeeList.add(employee)
             }
-
-            val (currentDayOfMonth, currentMonth) = LocalDate.now().let { localDate ->
-                localDate.dayOfMonth to localDate.month.value
-            }
-
-            val birthdayDayOfMonth1 = requireNotNull(birthday1).dayOfMonth
-            val birthdayMonth1 = birthday1.month.value
-
-            val birthdayDayOfMonth2 = requireNotNull(birthday2).dayOfMonth
-            val birthdayMonth2 = birthday2.month.value
-
-
-            1
         }
+
+        addAll(afterBirthdayEmployeeList.sortEmployees(now))
+        addAll(beforeBirthdayEmployeeList.sortEmployees(now))
+    }
+}
+
+private fun List<Employee>.sortEmployees(now: LocalDate) = sortedBy { employee ->
+    employee.birthday.mapEmployeeBirthday(now)
+}
+
+private fun LocalDate?.mapEmployeeBirthday(now: LocalDate) = this?.let { localDate ->
+    DateTimeUtils.createDateWithCurrentYear(now, localDate)
 }

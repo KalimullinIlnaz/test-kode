@@ -8,12 +8,13 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/startDivider"
-        android:layout_width="56dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_gravity="center|end"
         android:layout_marginTop="12dp"
         android:tint="@color/color_C3C3C6"
         app:layout_constraintBottom_toBottomOf="@id/birthdayYear"
+        app:layout_constraintEnd_toStartOf="@id/birthdayYear"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/birthdayYear"
         app:layout_constraintVertical_bias="0"
@@ -21,9 +22,10 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/birthdayYear"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:textColor="@color/color_C3C3C6"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,13 +36,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/endDivider"
-        android:layout_width="56dp"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_gravity="end|center"
         android:layout_marginTop="12dp"
         android:tint="@color/color_C3C3C6"
         app:layout_constraintBottom_toBottomOf="@id/birthdayYear"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/birthdayYear"
         app:layout_constraintTop_toTopOf="@id/birthdayYear"
         app:layout_constraintVertical_bias="0"
         app:srcCompat="@drawable/rounded_light_gray_rectangle" />

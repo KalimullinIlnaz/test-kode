@@ -1,4 +1,4 @@
-package com.ikalimullin.base.employee.list.presentation.page
+package com.ikalimullin.base.employee.list.presentation.page.adapter
 
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 import com.ikalimullin.base.employee.list.databinding.ItemEmployeeErrorBinding
