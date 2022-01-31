@@ -3,17 +3,18 @@ package com.ikalimullin.core.uikit.search
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View.OnFocusChangeListener
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.core.view.keyboard.hideKeyboard
 import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.uikit.R
+import com.ikalimullin.uikit.databinding.ViewSearchBinding
 
 class SearchView @JvmOverloads constructor(
     context: Context,
@@ -21,55 +22,50 @@ class SearchView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    // TODO сделать unsafeLazy
-    val searchView: EditText by unsafeLazy {
-        findViewById(R.id.searchEditText)
-    }
+    private val viewBinding = ViewSearchBinding.inflate(LayoutInflater.from(context), this)
 
-    private val clearIcon: ImageView by unsafeLazy {
-        findViewById(R.id.clearIcon)
+    val searchEditTextView: EditText by unsafeLazy {
+        viewBinding.searchEditText
     }
 
     val sortIcon: ImageView by unsafeLazy {
-        findViewById(R.id.sortIcon)
-    }
-
-    private val cancel: TextView by unsafeLazy {
-        findViewById(R.id.cancelTextView)
-    }
-
-    private val searchIcon: ImageView by unsafeLazy {
-        findViewById(R.id.searchIcon)
+        viewBinding.sortIcon
     }
 
     init {
-        inflate(context, R.layout.view_search, this)
-        orientation = HORIZONTAL
+        initView()
+        initListeners()
+    }
 
-        cancel.setOnClickListener {
-            cancel.isVisible = false
+    private fun initListeners() = with(viewBinding) {
+        cancelTextView.setOnClickListener {
+            cancelTextView.isVisible = false
             sortIcon.isVisible = true
             searchIcon.imageTintList = null
-            searchView.clearFocus()
+            searchEditTextView.clearFocus()
             hideKeyboard()
         }
 
         clearIcon.setOnClickListener {
-            searchView.setText("")
+            searchEditTextView.setText("")
         }
 
-        searchView.doOnTextChanged { _, _, _, count ->
+        searchEditTextView.doOnTextChanged { _, _, _, count ->
             clearIcon.isVisible = count > 0
         }
 
-        searchView.onFocusChangeListener = OnFocusChangeListener { _, isFocused ->
+        searchEditTextView.onFocusChangeListener = OnFocusChangeListener { _, isFocused ->
             if (isFocused) {
                 searchIcon.imageTintList = ColorStateList.valueOf(
                     context.getCompatColor(R.color.black)
                 )
             }
-            cancel.isVisible = isFocused
+            cancelTextView.isVisible = isFocused
             sortIcon.isVisible = !isFocused
         }
+    }
+
+    private fun initView() {
+        orientation = HORIZONTAL
     }
 }

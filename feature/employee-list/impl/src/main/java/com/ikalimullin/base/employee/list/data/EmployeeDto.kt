@@ -17,7 +17,7 @@ internal data class EmployeeDto(
         @Json(name = "avatarUrl") val avatarUrl: String,
         @Json(name = "firstName") val firstName: String,
         @Json(name = "lastName") val lastName: String,
-        @Json(name = "userTag") val userTag: String, // TODO добавить в отображение
+        @Json(name = "userTag") val userTag: String,
         @Json(name = "department") val department: String?,
         @Json(name = "position") val position: String,
         @Json(name = "birthday") val birthday: LocalDate?,

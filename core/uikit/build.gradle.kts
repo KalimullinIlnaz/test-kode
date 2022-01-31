@@ -3,7 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
 }
 
-applyAndroid()
+applyAndroid(useViewBinding = true)
 
 dependencies {
     implementation(project(":core:view"))

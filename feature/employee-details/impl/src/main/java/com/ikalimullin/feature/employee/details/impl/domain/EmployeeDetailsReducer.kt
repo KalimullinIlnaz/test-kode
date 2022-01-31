@@ -11,7 +11,5 @@ internal class EmployeeDetailsReducer : Reducer<EmployeeDetailsEffect, EmployeeD
     override fun invoke(
         effect: EmployeeDetailsEffect,
         state: EmployeeDetailsState
-    ): EmployeeDetailsState {
-        TODO("Not yet implemented")
-    }
+    ) = state
 }

@@ -56,7 +56,7 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
             /*viewModel.action(EmployeeListAction.Sorting.OpenScreen)*/
             EmployeeSortBottomDialogFragment.newInstance().show(childFragmentManager, "1")
         }
-        searchView.searchView.doOnTextChanged { text, _, _, _ ->
+        searchView.searchEditTextView.doOnTextChanged { text, _, _, _ ->
             viewModel.action(EmployeeListAction.Search(text?.toString().orEmpty()))
         }
     }
