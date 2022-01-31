@@ -2,7 +2,7 @@ package com.ikalimullin.base.employee.list.domain.model
 
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import com.ikalimullin.core.mvi.Middleware
-import com.ikalimullin.core.mvi.makeStore
+import com.ikalimullin.core.mvi.MviStore
 import com.ikalimullin.entity.employee.Department
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ internal class EmployeeListModel @Inject constructor(
     middlewares: Set<EmployeeListMiddleware>
 ) : EmployeeListInteractor {
 
-    private val store = makeStore(
+    private val store = MviStore(
         dispatchersProvider = dispatchersProvider,
         initState = EmployeeListReducer.initState(),
         initEffects = listOf(EmployeeListEffect.LoadEmployees),

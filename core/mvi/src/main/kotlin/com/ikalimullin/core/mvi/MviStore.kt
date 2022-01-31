@@ -15,15 +15,14 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
-import kotlinx.coroutines.withContext
 import timber.log.Timber
 
+@Suppress("LongParameterList")
 class MviStore<ACTION, EFFECT, STATE>(
     initState: STATE,
     private val dispatchersProvider: DispatchersProvider,
@@ -36,7 +35,7 @@ class MviStore<ACTION, EFFECT, STATE>(
 
     private val coroutineScope = CoroutineScope(
         SupervisorJob() +
-            dispatchersProvider.main +
+            dispatchersProvider.default +
             CoroutineName(MviStore::class.java.simpleName)
     )
 
@@ -48,13 +47,13 @@ class MviStore<ACTION, EFFECT, STATE>(
     val stateFlow: Flow<STATE> = state
 
     fun action(action: ACTION) {
-        coroutineScope.launch {
+        coroutineScope.launch(dispatchersProvider.main) {
             effects.emit(actionToEffect(action))
         }
     }
 
     override fun init() {
-        coroutineScope.launch {
+        coroutineScope.launch(dispatchersProvider.main) {
             val initEffects = initEffects.asFlow()
             val middleFlow = middlewares
                 .map { middleware -> dispatch(middleware, initEffects) }
@@ -74,10 +73,8 @@ class MviStore<ACTION, EFFECT, STATE>(
 
     override fun dispose() = coroutineScope.cancel()
 
-    private suspend fun reduce(effect: EFFECT) = withContext(dispatchersProvider.default) {
-        mutex.withLock {
-            state.emit(reducer(effect, state.value))
-        }
+    private suspend fun reduce(effect: EFFECT) = mutex.withLock {
+        state.emit(reducer(effect, state.value))
     }
 
     private fun dispatch(
@@ -87,7 +84,6 @@ class MviStore<ACTION, EFFECT, STATE>(
         listOf(initEffects, effects.asSharedFlow(), internalEffects.asSharedFlow()).merge(),
         state.asStateFlow()
     )
-        .flowOn(dispatchersProvider.default)
         .catch { throwable ->
             Timber.e(throwable)
             errorHandler(this, throwable)
@@ -95,21 +91,3 @@ class MviStore<ACTION, EFFECT, STATE>(
             if (BuildConfig.DEBUG) throw throwable
         }
 }
-
-fun <STATE, EFFECT, ACTION> makeStore(
-    dispatchersProvider: DispatchersProvider,
-    initState: STATE,
-    middlewares: Set<Middleware<EFFECT, STATE>>,
-    reducer: Reducer<EFFECT, STATE>,
-    initEffects: List<EFFECT>,
-    actionToEffect: (ACTION) -> EFFECT,
-    errorHandler: suspend FlowCollector<EFFECT>.(Throwable) -> Unit = {}
-) = MviStore(
-    dispatchersProvider = dispatchersProvider,
-    initState = initState,
-    middlewares = middlewares,
-    reducer = reducer,
-    initEffects = initEffects,
-    actionToEffect = actionToEffect,
-    errorHandler = errorHandler
-)

@@ -1,14 +1,14 @@
 package com.ikalimullin.feature.employee.details.impl.domain
 
 import com.ikalimullin.core.coroutines.DispatchersProvider
-import com.ikalimullin.core.mvi.makeStore
+import com.ikalimullin.core.mvi.MviStore
 import javax.inject.Inject
 
 internal class EmployeeDetailsModel @Inject constructor(
     dispatchersProvider: DispatchersProvider
 ) : EmployeeDetailsInteractor {
 
-    private val store = makeStore(
+    private val store = MviStore(
         dispatchersProvider = dispatchersProvider,
         initState = EmployeeDetailsReducer.initState(),
         initEffects = emptyList(),
