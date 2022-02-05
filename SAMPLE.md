@@ -1,0 +1,6 @@
+# ![Главный экран](appScreens/main.png)
+# ![Детальная информация о работнике](appScreens/detailsInfo.png)
+# ![Диалог с возможностью позвонить работнику на номер телефона](appScreens/call.png)
+# ![Фильтрация по работе с помощью табов](appScreens/filterAndroid.png)
+# ![Диалог сортировки](appScreens/sortingScreen.png)
+# ![Сортировка работников по ближайшему дню рождению](appScreens/sortByBirthday.png)
