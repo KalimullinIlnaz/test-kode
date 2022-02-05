@@ -2,7 +2,7 @@
 Приложение написано по техническому заданию от KODE.
 
 Техническое задание - https://github.com/appKODE/trainee-test-frontend  
-Дизайн - https://www.figma.com/file/GRRKONipVClULsfdCAuVs1/KODE-Trainee-Dev-%D0%9E%D1%81%D0%B5%D0%BD%D1%8C'21?node-id=0%3A1
+Дизайн - https://www.figma.com/file/GRRKONipVClULsfdCAuVs1/KODE-Trainee-Dev-%D0%9E%D1%81%D0%B5%D0%BD%D1%8C'21?node-id=0%3A1  
 [Скрины текущего приложения](SAMPLE.md)  
 
 Приложение написано с использованием языка программирования Kotlin.
