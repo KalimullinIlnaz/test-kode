@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.FragmentEmployeePageBinding
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewModel
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewState
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeListViewModel
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeListViewState
 import com.ikalimullin.base.employee.list.presentation.page.adapter.EmployeeListAdapter
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy

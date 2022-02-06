@@ -14,8 +14,8 @@ import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.FragmentBottomEmployeeSortBinding
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
 import com.ikalimullin.base.employee.list.domain.model.SortingType
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewModel
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewState
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeListViewModel
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeListViewState
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint

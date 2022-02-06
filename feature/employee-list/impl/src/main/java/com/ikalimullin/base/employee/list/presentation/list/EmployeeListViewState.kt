@@ -1,4 +1,4 @@
-package com.ikalimullin.base.employee.list.presentation
+package com.ikalimullin.base.employee.list.presentation.list
 
 import androidx.annotation.ColorRes
 import com.ikalimullin.base.employee.list.presentation.page.adapter.EmployeeItem

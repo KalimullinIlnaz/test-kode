@@ -28,7 +28,9 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
     }
 
     private fun sortByAlphabet(employees: List<Employee>?) = employees?.sortedWith(
-        compareBy(String.CASE_INSENSITIVE_ORDER) { employee -> employee.firstName }
+        compareBy(String.CASE_INSENSITIVE_ORDER) { employee ->
+            "${employee.firstName} ${employee.lastName}"
+        }
     )
 
     private fun sortByBirthday(employees: List<Employee>?) = mutableListOf<Employee>().apply {

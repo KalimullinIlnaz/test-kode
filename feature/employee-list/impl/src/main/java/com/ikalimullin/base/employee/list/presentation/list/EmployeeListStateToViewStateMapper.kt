@@ -1,4 +1,4 @@
-package com.ikalimullin.base.employee.list.presentation
+package com.ikalimullin.base.employee.list.presentation.list
 
 import android.content.Context
 import com.ikalimullin.base.employee.list.R

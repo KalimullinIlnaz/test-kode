@@ -6,8 +6,8 @@ import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
 import com.ikalimullin.base.employee.list.domain.model.middlewares.EmployeeSortingBackNavigateMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.NavigateToEmployeeDetailsMiddleware
-import com.ikalimullin.base.employee.list.presentation.EmployeeListStateToViewStateMapper
-import com.ikalimullin.base.employee.list.presentation.EmployeeViewStateMapper
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeListStateToViewStateMapper
+import com.ikalimullin.base.employee.list.presentation.list.EmployeeViewStateMapper
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import dagger.Binds
 import dagger.Module

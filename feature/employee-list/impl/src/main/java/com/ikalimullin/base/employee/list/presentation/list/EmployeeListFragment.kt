@@ -11,8 +11,6 @@ import com.google.android.material.tabs.TabLayout
 import com.ikalimullin.base.employee.list.R
 import com.ikalimullin.base.employee.list.databinding.FragmentEmployeeListBinding
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewModel
-import com.ikalimullin.base.employee.list.presentation.EmployeeListViewState
 import com.ikalimullin.base.employee.list.presentation.page.EmployeePageFragment
 import com.ikalimullin.base.employee.list.presentation.sorting.EmployeeSortBottomDialogFragment
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
@@ -62,13 +60,6 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
     }
 
     private fun initTabs() = with(viewBinding) {
-        employeeTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) =
-                viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
-            override fun onTabReselected(tab: TabLayout.Tab?) = Unit
-        })
         employeeTabLayout.addTab(
             employeeTabLayout.newTab().apply { text = getString(R.string.all) }
         )
@@ -77,7 +68,7 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
         }
         employeeTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) =
-                viewModel.action(EmployeeListAction.TabSelected(tab.text?.toString().orEmpty()))
+                viewModel.selectTab(tab.text?.toString().orEmpty())
 
             override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
             override fun onTabReselected(tab: TabLayout.Tab?) = Unit
