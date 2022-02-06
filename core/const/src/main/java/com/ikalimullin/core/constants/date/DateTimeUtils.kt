@@ -1,10 +1,10 @@
 package com.ikalimullin.core.constants.date
 
+import timber.log.Timber
 import java.time.Instant
 import java.time.LocalDate
 import java.time.Month
 import java.time.format.DateTimeParseException
-import timber.log.Timber
 
 object DateTimeUtils {
 

@@ -9,8 +9,8 @@ import com.ikalimullin.core.coroutines.extensions.mapWithDistinct
 import com.ikalimullin.core.coroutines.extensions.withValue
 import com.ikalimullin.core.mvi.MviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
 @HiltViewModel
 internal class EmployeeListViewModel @Inject constructor(
