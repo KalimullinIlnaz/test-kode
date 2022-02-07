@@ -6,5 +6,6 @@ plugins {
 applyAndroid()
 
 dependencies {
+    implementation(Dependencies.appCompat)
     implementation(DependenciesLists.modo)
 }

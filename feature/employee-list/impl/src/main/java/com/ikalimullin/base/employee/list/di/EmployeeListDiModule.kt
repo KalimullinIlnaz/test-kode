@@ -3,7 +3,6 @@ package com.ikalimullin.base.employee.list.di
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListInteractor
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListMiddleware
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
-import com.ikalimullin.base.employee.list.domain.model.middlewares.EmployeeSortingBackNavigateMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.NavigateToEmployeeDetailsMiddleware
 import com.ikalimullin.base.employee.list.presentation.list.EmployeeListStateToViewStateMapper
@@ -44,13 +43,6 @@ internal object EmployeeListDiModule {
         @IntoSet
         fun bindLoadEmployeeMiddleware(
             middleware: LoadEmployeeMiddleware
-        ): EmployeeListMiddleware
-
-        @Binds
-        @ViewModelScoped
-        @IntoSet
-        fun bindEmployeeSortingBackNavigateMiddleware(
-            middleware: EmployeeSortingBackNavigateMiddleware
         ): EmployeeListMiddleware
     }
 

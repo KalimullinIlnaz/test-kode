@@ -14,6 +14,7 @@ import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
 import com.ikalimullin.base.employee.list.presentation.page.EmployeePageFragment
 import com.ikalimullin.base.employee.list.presentation.sorting.EmployeeSortBottomDialogFragment
 import com.ikalimullin.core.coroutines.extensions.subscribeWithStartedState
+import com.ikalimullin.core.navigation.ext.open
 import com.ikalimullin.core.view.resourses.getCompatColor
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.entity.employee.Department
@@ -50,9 +51,7 @@ class EmployeeListFragment : Fragment(R.layout.fragment_employee_list) {
 
     private fun initListeners() = with(viewBinding) {
         searchView.sortIcon.setOnClickListener {
-            // Сделать абстракцию над модо или свой роутер для открытия диалогов
-            /*viewModel.action(EmployeeListAction.Sorting.OpenScreen)*/
-            EmployeeSortBottomDialogFragment.newInstance().show(childFragmentManager, "1")
+            EmployeeSortBottomDialogFragment.newInstance().open(childFragmentManager)
         }
         searchView.searchEditTextView.doOnTextChanged { text, _, _, _ ->
             viewModel.action(EmployeeListAction.Search(text?.toString().orEmpty()))

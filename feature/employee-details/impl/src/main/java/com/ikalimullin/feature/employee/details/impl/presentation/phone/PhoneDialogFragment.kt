@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.ikalimullin.core.navigation.ext.open
 import com.ikalimullin.core.stdlib.delegates.unsafeLazy
 import com.ikalimullin.core.view.fragment.initialArguments
 import com.ikalimullin.core.view.fragment.withInitialArguments
@@ -26,7 +27,7 @@ import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PhoneBottomSheetDialog : DialogFragment() {
+class PhoneDialogFragment : DialogFragment() {
 
     companion object {
         @Parcelize
@@ -37,9 +38,9 @@ class PhoneBottomSheetDialog : DialogFragment() {
         fun show(
             fragmentManager: FragmentManager,
             phone: Phone
-        ) = newInstance(phone).show(fragmentManager, PhoneBottomSheetDialog::class.java.simpleName)
+        ) = newInstance(phone).open(fragmentManager)
 
-        private fun newInstance(phone: Phone) = PhoneBottomSheetDialog().withInitialArguments(phone)
+        private fun newInstance(phone: Phone) = PhoneDialogFragment().withInitialArguments(phone)
     }
 
     @Inject

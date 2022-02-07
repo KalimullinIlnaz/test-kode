@@ -21,7 +21,7 @@ import com.ikalimullin.core.view.textView.newText
 import com.ikalimullin.core.view.viewBinding.viewBinding
 import com.ikalimullin.feature.employee.details.impl.R
 import com.ikalimullin.feature.employee.details.impl.databinding.FragmentEmployeeDetailsBinding
-import com.ikalimullin.feature.employee.details.impl.presentation.phone.PhoneBottomSheetDialog
+import com.ikalimullin.feature.employee.details.impl.presentation.phone.PhoneDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.parcelize.Parcelize
 
@@ -92,9 +92,9 @@ class EmployeeDetailsFragment : Fragment(R.layout.fragment_employee_details) {
         )
         phone.newText = phoneNumber
         phone.setOnClickListener {
-            PhoneBottomSheetDialog.show(
+            PhoneDialogFragment.show(
                 childFragmentManager,
-                PhoneBottomSheetDialog.Companion.Phone(phoneNumber)
+                PhoneDialogFragment.Companion.Phone(phoneNumber)
             )
         }
     }
