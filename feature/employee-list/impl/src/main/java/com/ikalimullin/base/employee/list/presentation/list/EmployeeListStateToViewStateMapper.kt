@@ -65,7 +65,7 @@ internal class EmployeeListStateToViewStateMapper @Inject constructor(
         val now = LocalDate.now()
         employees.forEach { employee ->
             val birthday = employee.birthday?.let { localDate ->
-                DateTimeUtils.createDateWithCurrentYear(now, localDate)
+                DateTimeUtils.createDateWithCurrentYear(localDate)
             }
 
             if (count == 0 && birthday?.isBefore(now) == true) {

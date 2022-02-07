@@ -43,7 +43,7 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
 
         employees.forEach { employee ->
             // TODO не учитывается день рождение в високосный год
-            val birthday = employee.birthday.mapEmployeeBirthday(now)
+            val birthday = employee.birthday.mapEmployeeBirthday()
 
             if (birthday?.isBefore(now) == true) {
                 beforeBirthdayEmployeeList.add(employee)
@@ -52,15 +52,15 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
             }
         }
 
-        addAll(afterBirthdayEmployeeList.sortEmployees(now))
-        addAll(beforeBirthdayEmployeeList.sortEmployees(now))
+        addAll(afterBirthdayEmployeeList.sortEmployees())
+        addAll(beforeBirthdayEmployeeList.sortEmployees())
     }
 }
 
-private fun List<Employee>.sortEmployees(now: LocalDate) = sortedBy { employee ->
-    employee.birthday.mapEmployeeBirthday(now)
+private fun List<Employee>.sortEmployees() = sortedBy { employee ->
+    employee.birthday.mapEmployeeBirthday()
 }
 
-private fun LocalDate?.mapEmployeeBirthday(now: LocalDate) = this?.let { localDate ->
-    DateTimeUtils.createDateWithCurrentYear(now, localDate)
+private fun LocalDate?.mapEmployeeBirthday() = this?.let { localDate ->
+    DateTimeUtils.createDateWithCurrentYear(localDate)
 }
