@@ -42,7 +42,6 @@ internal class EmployeeSortingReducer : Reducer<EmployeeListEffect.Sorting, Empl
         val afterBirthdayEmployeeList = mutableListOf<Employee>()
 
         employees.forEach { employee ->
-            // TODO не учитывается день рождение в високосный год
             val birthday = employee.birthday.mapEmployeeBirthday()
 
             if (birthday?.isBefore(now) == true) {
