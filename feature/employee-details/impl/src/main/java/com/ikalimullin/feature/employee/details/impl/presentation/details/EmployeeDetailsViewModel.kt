@@ -4,16 +4,16 @@ import com.github.terrakok.modo.Modo
 import com.github.terrakok.modo.back
 import com.ikalimullin.core.mvi.MviViewModel
 import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsAction
-import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsInteractor
 import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsState
+import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 internal class EmployeeDetailsViewModel @Inject constructor(
-    interactor: EmployeeDetailsInteractor,
+    useCase: EmployeeDetailsUseCase,
     private val modo: Modo
-) : MviViewModel<EmployeeDetailsState, EmployeeDetailsAction>(interactor) {
+) : MviViewModel<EmployeeDetailsState, EmployeeDetailsAction>(useCase) {
 
     fun back() = modo.back()
 }

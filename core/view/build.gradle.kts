@@ -13,5 +13,5 @@ dependencies {
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.fragment)
-    implementation(DependenciesLists.glide)
+    glide()
 }

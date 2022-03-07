@@ -2,7 +2,7 @@ package com.ikalimullin.feature.employee.details.impl.di
 
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsInteractor
-import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsModel
+import com.ikalimullin.feature.employee.details.impl.domain.EmployeeDetailsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +17,5 @@ internal class EmployeeDetailsDiModule {
     @Provides
     fun provideEmployeeListModel(
         dispatchersProvider: DispatchersProvider
-    ): EmployeeDetailsInteractor = EmployeeDetailsModel(dispatchersProvider)
+    ): EmployeeDetailsUseCase = EmployeeDetailsInteractor(dispatchersProvider)
 }

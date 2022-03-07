@@ -2,6 +2,7 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinParcelize)
+    id(Plugins.kotlinKapt)
 }
 
 applyAndroid()
@@ -12,5 +13,5 @@ dependencies {
     implementation(project(":core:const"))
 
     implementation(Dependencies.fragment)
-    implementation(DependenciesLists.modo)
+    modo()
 }

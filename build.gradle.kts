@@ -27,7 +27,8 @@ allprojects {
         google()
         mavenCentral()
     }
-    apply(plugin = "org.jmailen.kotlinter")
+    apply(plugin = Plugins.kotlinter)
+    apply(plugin = Plugins.detekt)
 }
 subprojects {
     plugins.withType<AndroidBasePlugin>() {

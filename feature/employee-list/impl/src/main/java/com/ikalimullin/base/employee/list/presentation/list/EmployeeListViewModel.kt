@@ -2,8 +2,8 @@ package com.ikalimullin.base.employee.list.presentation.list
 
 import androidx.lifecycle.viewModelScope
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListAction
-import com.ikalimullin.base.employee.list.domain.model.EmployeeListInteractor
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListState
+import com.ikalimullin.base.employee.list.domain.model.EmployeeListUseCase
 import com.ikalimullin.core.coroutines.DispatchersProvider
 import com.ikalimullin.core.coroutines.extensions.mapWithDistinct
 import com.ikalimullin.core.coroutines.extensions.withValue
@@ -14,10 +14,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class EmployeeListViewModel @Inject constructor(
-    interactor: EmployeeListInteractor,
+    useCase: EmployeeListUseCase,
     viewStateMapper: EmployeeViewStateMapper,
     dispatchersProvider: DispatchersProvider
-) : MviViewModel<EmployeeListState, EmployeeListAction>(interactor) {
+) : MviViewModel<EmployeeListState, EmployeeListAction>(useCase) {
 
     val viewState = stateFlow
         .mapWithDistinct(viewStateMapper)

@@ -30,8 +30,8 @@ dependencies {
     implementation(Dependencies.fragment)
     implementation(Dependencies.lifecycleRuntime)
     implementation(Dependencies.lifecycleViewModel)
-    implementation(DependenciesLists.modo)
-    implementation(DependenciesLists.hilt)
+    modo()
+    hilt()
     implementation(Dependencies.material)
     implementation(Dependencies.glide)
 }

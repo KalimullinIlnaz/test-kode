@@ -1,42 +1,38 @@
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-object DependenciesLists {
-    val hilt = listOf(
-        Dependency(Dependencies.hiltAndroid),
-        Dependency(Dependencies.hiltAndroidXCompiler),
-        Dependency(Dependencies.hiltAndroidCompiler, DependencyType.KAPT)
-    )
-    val room = listOf(
-        Dependency(Dependencies.room),
-        Dependency(Dependencies.roomKtx),
-        Dependency(Dependencies.roomKapt, DependencyType.KAPT)
-    )
-    val modo = listOf(
-        Dependency(Dependencies.modo),
-        Dependency(Dependencies.modoRenderAndroidFm)
-    )
-    val moshi = listOf(
-        Dependency(Dependencies.moshi),
-        Dependency(Dependencies.moshiKapt, DependencyType.KAPT)
-    )
-    val glide = listOf(
-        Dependency(Dependencies.glide),
-        Dependency(Dependencies.glideCompiler, DependencyType.KAPT)
-    )
+fun DependencyHandlerScope.hilt() {
+    implementation(Dependencies.hiltAndroid)
+    implementation(Dependencies.hiltAndroidXCompiler)
+    kapt(Dependencies.hiltAndroidCompiler)
 }
 
-fun DependencyHandlerScope.implementation(dependencies: List<Dependency>) {
-    dependencies.forEach { dependency ->
-        add(dependency.type.value, dependency.name)
-    }
+fun DependencyHandlerScope.modo() {
+    implementation(Dependencies.modo)
+    implementation(Dependencies.modoRenderAndroidFm)
+    kapt(Dependencies.hiltAndroidCompiler)
 }
 
-data class Dependency(
-    val name: String,
-    val type: DependencyType = DependencyType.IMPLEMENTATION
-)
+fun DependencyHandlerScope.moshi() {
+    implementation(Dependencies.moshi)
+    implementation(Dependencies.hiltAndroidXCompiler)
+    kapt(Dependencies.moshiKapt)
+}
 
-enum class DependencyType(val value: String) {
-    IMPLEMENTATION("implementation"),
-    KAPT("kapt")
+fun DependencyHandlerScope.glide() {
+    implementation(Dependencies.glide)
+    kapt(Dependencies.glideCompiler)
+}
+
+fun DependencyHandlerScope.room() {
+    implementation(Dependencies.room)
+    implementation(Dependencies.roomKtx)
+    kapt(Dependencies.roomKapt)
+}
+
+private fun DependencyHandlerScope.implementation(name: String) {
+    add("implementation", name)
+}
+
+private fun DependencyHandlerScope.kapt(name: String) {
+    add("kapt", name)
 }

@@ -2,7 +2,7 @@ package com.ikalimullin.base.employee.list.di
 
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListInteractor
 import com.ikalimullin.base.employee.list.domain.model.EmployeeListMiddleware
-import com.ikalimullin.base.employee.list.domain.model.EmployeeListModel
+import com.ikalimullin.base.employee.list.domain.model.EmployeeListUseCase
 import com.ikalimullin.base.employee.list.domain.model.middlewares.LoadEmployeeMiddleware
 import com.ikalimullin.base.employee.list.domain.model.middlewares.NavigateToEmployeeDetailsMiddleware
 import com.ikalimullin.base.employee.list.presentation.list.EmployeeListStateToViewStateMapper
@@ -25,7 +25,7 @@ internal object EmployeeListDiModule {
     fun provideEmployeeListModel(
         dispatchersProvider: DispatchersProvider,
         middlewares: @JvmSuppressWildcards Set<EmployeeListMiddleware>
-    ): EmployeeListInteractor = EmployeeListModel(dispatchersProvider, middlewares)
+    ): EmployeeListUseCase = EmployeeListInteractor(dispatchersProvider, middlewares)
 
     @Module
     @InstallIn(ViewModelComponent::class)

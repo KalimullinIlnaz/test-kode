@@ -96,14 +96,14 @@ dependencies {
 
     implementation(Dependencies.appCompat)
     implementation(Dependencies.timber)
-    implementation(DependenciesLists.hilt)
+    hilt()
     implementation(Dependencies.coroutines)
     implementation(Dependencies.coroutinesCore)
     implementation(Dependencies.retrofit)
-    implementation(DependenciesLists.moshi)
+    moshi()
     implementation(Dependencies.moshiRetrofitConvertor)
-    implementation(DependenciesLists.room)
-    implementation(DependenciesLists.modo)
+    room()
+    modo()
     implementation(Dependencies.httpLoggingInterceptor)
     implementation(Dependencies.coreDesugar)
 }

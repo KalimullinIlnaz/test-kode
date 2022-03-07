@@ -14,7 +14,7 @@ dependencies {
     implementation(project(":core:stdlib"))
 
     implementation(Dependencies.appCompat)
-    implementation(DependenciesLists.modo)
-    implementation(DependenciesLists.hilt)
+    modo()
+    hilt()
     implementation(Dependencies.splashScreen)
 }

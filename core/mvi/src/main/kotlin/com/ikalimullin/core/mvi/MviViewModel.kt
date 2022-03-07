@@ -2,18 +2,18 @@ package com.ikalimullin.core.mvi
 
 import androidx.lifecycle.ViewModel
 
-open class MviViewModel<STATE, ACTION>(private val interactor: Interactor<STATE, ACTION>) : ViewModel() {
+open class MviViewModel<STATE, ACTION>(private val useCase: UseCase<STATE, ACTION>) : ViewModel() {
 
     init {
-        interactor.init()
+        useCase.init()
     }
 
-    val stateFlow = interactor.stateFlow
+    val stateFlow = useCase.stateFlow
 
-    fun action(action: ACTION) = interactor.action(action)
+    fun action(action: ACTION) = useCase.action(action)
 
     override fun onCleared() {
-        interactor.dispose()
+        useCase.dispose()
         super.onCleared()
     }
 }
